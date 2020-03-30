@@ -1,7 +1,7 @@
 import React from 'react';
 
 function TextInput() {
-  return <div>MOON</div>;
+  return <div>문원</div>;
 }
 
 export default TextInput;
