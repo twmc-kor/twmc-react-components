@@ -24,6 +24,7 @@ export default TextName;
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 
@@ -48,7 +49,10 @@ position: absolute;
 `;
 
 const InputName = styled.input`
+display: flex;
+justify-content: center;
 width: 120%;
+margin: auto;
 border: 0;
 outline: 0;
 padding: 0.5rem 0;

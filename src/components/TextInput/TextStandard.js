@@ -49,13 +49,12 @@ position: absolute;
 
 const InputName = styled.input`
 width: 120%;
-padding: 20px 0 8px 10px;
 border: 0;
 border-radius: 6px 6px 0 0;
 background-color: #bdc3c7;
 background-color: rgba(87, 96, 111, 0.4);
 outline: 0;
-padding: 0.5rem 0;
+padding: 20px 0 8px 10px;
 font-size: 25px;
 border-bottom: 2px solid #2f3542;
 
@@ -72,5 +71,8 @@ color: #111;
   font-size: 10px;
   top: -10px;
   color: #2f3640;
+}
+&:hover {
+  background-color: #dcdde1;
 }
 `;

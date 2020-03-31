@@ -1,6 +1,7 @@
 import React from 'react';
-import TextName from './TextName';
 import TextStandard from './TextStandard';
+import TextName from './TextName';
+import TextError from './TextError';
 import styled from 'styled-components';
 
 
@@ -30,7 +31,7 @@ function TextInput () {
      </Div>
      <Title>Input Text(3)</Title>
      <Div>
-       3
+      <TextError />
      </Div>
     </Container>
   ); 
@@ -50,12 +51,11 @@ const Container = styled.div`
 const DivField = styled.div`
   display: flex;
   justify-content: center;
-  border: 1px solid #2d3436;
   border-radius: 7px;
   width: 93%;
   height: 20%;
   margin: auto;
-  margin: 40px 20px;
+  margin: 20px 20px;
   background-color: white;
 `;
 
@@ -64,4 +64,6 @@ const Title =styled.h4`
   justify-content: center;
   margin: auto;
   margin: 10px;
+  font-weight: 300;
+  font-size: 20px;
 `;
