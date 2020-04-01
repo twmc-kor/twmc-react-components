@@ -14,7 +14,7 @@ const Container = styled.div`
 const RouteButton = styled(Link)`
     margin: 5px;
     text-decoration: none;
-    color: purple;
+    color: #6F1E51;
     font-size: 20px;
     font-weight: 600;
 `;
