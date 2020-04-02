@@ -7,12 +7,16 @@ function ButtonBoard() {
     <Content>
       <div>
         <P>Button - Normal</P>
-        <Button mode="full">FULL</Button>
-        <Button mode="line">LINE</Button>
-        <Button>NORMAL</Button>
+        <Button mode="full">contained</Button>
+        <Button mode="line">outlined</Button>
+        <Button>text</Button>
+        <Button mode="disabled">disabled</Button>
       </div>
       <div>
         <P>Button - Animation</P>
+        <Button mode="shadow">Ani-1</Button>
+        <Button mode="slide">Ani-2</Button>
+        <Button mode="border">Ani-3</Button>
       </div>
       <div>
         <P>Button - Icon</P>
@@ -32,6 +36,7 @@ const P = styled.div`
   border-bottom: 2px solid #dee2e6;
   font-size: 30px;
   color: #495057;
+  cursor: default;
 `;
 
 export default ButtonBoard;
