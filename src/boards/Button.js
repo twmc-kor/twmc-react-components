@@ -3,10 +3,8 @@ import {Button} from '../components';
 import styled from 'styled-components';
 
 function ButtonBoard() {
-  // const [deleteAlertOn, ] = ustState(false);
-  // const handleClick =() => {
+  // const [click, onClickAlert ] = ustState(false);
     
-  // }
   return (
     <Content>
       <div> {/* mode: default값은 contained | color: 배경색을 기준으로 함 */}
@@ -24,7 +22,7 @@ function ButtonBoard() {
       </div>
       <div>
         <P>Button - Icon</P>
-        <Button mode="icon" color=""><Img src="/img/check.png" /></Button>
+        <Button mode="icon"><Img src="/img/check.png" /></Button>
         <Button mode="icon"><Img src="/img/download.png" /></Button>
         <Button mode="icon"><Img src="/img/close.png" /></Button>
         <Button mode="icon"><Img src="/img/trash.png" /></Button>

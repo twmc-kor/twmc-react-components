@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Button(props) {
-  const {mode, color, action, children} = props;
-  return <Container mode={mode} color={color} action={action}>{children}</Container>;
+  const {mode, color, action, disabled, children} = props;
+  return <Container mode={mode} color={color} action={action} disabled={disabled}>{children}</Container>;
 }
 
 const Container = styled.button`
