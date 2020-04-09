@@ -3,29 +3,43 @@ import {Button} from '../components';
 import styled from 'styled-components';
 
 function ButtonBoard() {
-  // const [click, onClickAlert ] = ustState(false);
+  // const [click, onClickAlert] = useState(false);
     
   return (
     <Content>
-      <div> {/* mode: default값은 contained | color: 배경색을 기준으로 함 */}
+      <div> {/* color: 배경색(#748ffc)을 기준으로 함 */}
         <P>Button - Normal</P>
-        <Button mode="full" color="#748ffc">contained</Button>
-        <Button mode="line">outlined</Button>
-        <Button>text</Button>
+        <Button mode="full" onClick={ () => {
+          console.log("This is a Basic button.");
+        }}>contained</Button>
+        <Button mode="line" color="#fff" onClick={ () => {
+          console.log("This is a out-line button.");
+        }}>outlined</Button>
+        <Button color="#fff" onClick={ () => {
+          console.log("This is a text button without line.");
+        }}>text</Button>
         <Button mode="disabled" color="#868e96" disabled>disabled</Button>
       </div>
       <div>
         <P>Button - Animation</P>
-        <Button action="shadow" color="#748ffc">Ani-1</Button>
-        <Button action="slide" color="#748ffc">Ani-2</Button>
+        <Button action="shadow" onClick={() => {
+          window.confirm('정말로?') 
+          if(true) return console.log("전송!");
+        }
+        }>Ani-1</Button>
+        <Button action="slide">Ani-2</Button>
         <Button action="border">Ani-3</Button>
       </div>
       <div>
         <P>Button - Icon</P>
-        <Button mode="icon"><Img src="/img/check.png" /></Button>
+        <Button mode="icon" ><Img src="/img/check.png" /></Button>
         <Button mode="icon"><Img src="/img/download.png" /></Button>
-        <Button mode="icon"><Img src="/img/close.png" /></Button>
-        <Button mode="icon"><Img src="/img/trash.png" /></Button>
+        <Button mode="icon" onClick={ () => {
+          alert("정말로 닫으시겠습니까?");
+        }}><Img src="/img/close.png" /></Button>
+        <Button mode="icon" onClick={ () => {
+          alert("정말로 버릴까요?");
+        }}><Img src="/img/trash.png" /></Button>
       </div>
     </Content>
   );

@@ -2,17 +2,33 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Button(props) {
-  const {mode, color, action, disabled, children} = props;
-  return <Container mode={mode} color={color} action={action} disabled={disabled}>{children}</Container>;
+  const {
+    mode,
+    color = '#748ffc',
+    action,
+    disabled,
+    onClick,
+    children,
+  } = props;
+  return (
+    <Container
+      mode={mode}
+      color={color}
+      action={action}
+      disabled={disabled}
+      onClick={onClick}>
+      {children}
+    </Container>
+  );
 }
 
 const Container = styled.button`
   width: ${(props) => {
-    if(props.mode === 'icon') return '75px';
+    if (props.mode === 'icon') return '75px';
     return '150px';
   }};
   height: ${(props) => {
-    if(props.mode === 'icon') return '70px';
+    if (props.mode === 'icon') return '70px';
   }};
   padding: 10px;
   margin: 0 5px 10px 5px;
@@ -21,62 +37,64 @@ const Container = styled.button`
   }};
   border-style: ${(props) => (props.mode === 'line' ? 'solid' : 'hidden')};
   border-radius: ${(props) => {
-    if(props.mode === 'icon') return '50%';
+    if (props.mode === 'icon') return '50%';
     return '5px';
   }};
   font: 700 20px sans-serif;
   letter-spacing: 1px;
   color: ${(props) => {
-    if(props.mode === 'full') return '#fff';
-    if(props.mode === 'line') return '#748ffc';
-    if(props.mode === 'disabled') return '#ced4da';
-    if(props.action === 'slide') return '#000';
-    if(props.action === 'shadow') return '#fff';
+    if (props.mode === 'full') return '#fff';
+    if (props.mode === 'line') return '#748ffc';
+    if (props.mode === 'disabled') return '#ced4da';
+    if (props.action === 'slide') return '#000';
+    if (props.action === 'shadow') return '#fff';
+    if (props.action === 'border') return '#fff';
     return '#748ffc';
   }};
-  background-color: ${props => props.color};
+  background-color: ${(props) => {
+    if (props.mode === 'icon') return '#fff';
+    return props.color; //mode='icon'일 경우에만 흰색으로 지정. 나머지는 color props 받아오기
+  }};
   cursor: ${(props) => {
-    if(props.mode === 'disabled') return 'not-allowed';
+    if (props.mode === 'disabled') return 'not-allowed';
     return 'pointer';
   }};
   transition: ${(props) => {
-    if(props.action === 'slide') return 'all 0.9s';
-    if(props.action === 'shadow') return 'all 0.5s';
-    if(props.action === 'border') return 'width 0.8s, height 0.8s';
-    }};
+    if (props.action === 'slide') return 'all 0.9s';
+    if (props.action === 'shadow') return 'all 0.5s';
+    if (props.action === 'border') return 'background 250ms ease-in-out, transform 150ms ease';
+    return 'all 0.3s';
+  }};
   &:focus {
-    outline: none;
+    outline: ${(props) => {
+       if (props.action === 'border') return '1px solid #fff';
+       return 'none';
+    }};
+    outline-offset: ${(props) => {
+      if (props.action === 'border') return '-4px';
+    }}
   };
   &:hover {
     background-color: ${(props) => {
-      if(props.mode === 'full') return '#91a7ff';
-      if(props.mode === 'disabled') return 'none';
-      if(props.action === 'slide') return '#3b5bdb';
-      if(props.action === 'shadow') return '#364fc7';
+      if (props.mode === 'full') return '#91a7ff';
+      if (props.mode === 'disabled') return 'none';
+      if (props.action === 'slide') return '#3b5bdb';
+      if (props.action === 'shadow') return '#364fc7';
+      if (props.action === 'border') return '#4263eb';
       return '#dbe4ff';
     }};
     color: ${(props) => {
-      if(props.action === 'slide') return '#fff';
+      if (props.action === 'slide') return '#fff';
     }};
     box-shadow: ${(props) => {
-      if(props.action === 'slide') return '150px 0 0 0 rgba(0,0,0,0.5) inset';
-      if(props.action === 'shadow') return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);'
+      if (props.action === 'slide') return '150px 0 0 0 rgba(0,0,0,0.5) inset';
+      if (props.action === 'shadow')
+        return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);';
     }};
-    /* border: ${(props) => {
-      if(props.action === 'border') return '1px solid #748ffc';
-    }}; */
   };
-
-  &::before,
-  &::after {
-    border: ${(props) => {
-      if(props.action === 'border') return '1px solid #748ffc';
-    }};
-    width: ${(props) => {
-      if(props.action === 'border') return '0';
-    }};
-    height: ${(props) => {
-      if(props.action === 'border') return '0';
-    }};
+  &:active {
+    transform: ${(props) => {
+      if (props.action === 'border') return 'scale(0.99)';
+  }};
   }
 `;
