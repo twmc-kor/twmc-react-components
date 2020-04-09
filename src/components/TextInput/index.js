@@ -2,34 +2,66 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Input(props) {
-  const {mode, children} = props;
-  return(
-      <Container mode={mode}>{children}</Container>
-  )
+  const {
+    mode,
+    type,
+    value,
+    onChange,
+    id,
+    name,
+    placeholder,
+    autoComplete = 'off',
+    children,
+  } = props;
+  return (
+    <Container
+      mode={mode}
+      type={type}
+      value={value}
+      onChange={onChange}
+      name={name}
+      id={id}
+      placeholder={placeholder}
+      autoComplete={autoComplete}>
+      {children}
+    </Container>
+  );
 }
 
 const Container = styled.input`
-  display: flex;
-  width: 80%;
-  padding: 12px 2px 12px 2px;
-  background-color: ${(props) => (props.mode === 'filled'
-  ? '#ecf0f1' : '#fff')};
-  border: ${(props) => (props.mode === 'disabled'
-  ? '1px solid #c0392b' : '0')};
-  border-bottom: ${(props) => {
-    if(props.mode === 'standard')
-    return '1.75px solid #2f3542'
-    if(props.mode === 'filled')
-    return '1.75px solid #2f3542'
-  }};
-  border-radius: ${(props) => {
-    if(props.mode === 'standard')
-      return '0'
-    if(props.mode === 'filled')
-      return '7.5px 7.5px 0 0'
-    if(props.mode === 'disabled')
-      return '6px'
+  width: 170px;
+  border: ${(props) => {
+    if (props.id === 'userid_1') return '0';
+    if (props.id === 'userid_2') return '2.5px solid #a4b0be';
+    if (props.id === 'userpwd_1') return '0';
+    if (props.id === 'userpwd_2') return '2.5px solid #a4b0be';
   }};
   outline: 0;
-  font-size: 25px;
-  `;
+  padding: ${(props) => {
+    if (props.id === 'userid_1') return '0.5rem 0';
+    if (props.id === 'userid_2') return '0.5rem 5px';
+    if (props.id === 'userpwd_1') return '0.5rem 0';
+    if (props.id === 'userpwd_2') return '0.5rem 5px';
+  }};
+  border-bottom: ${(props) => {
+    if (props.id === 'userid_1') return '2px solid #70a1ff';
+    if (props.id === 'userpwd_1') return '2px solid #ff6b81';
+  }};
+  box-shadow: none;
+  font-size: 20px;
+  color: black;
+  &:focus ~ label,
+  &:valid ~ label {
+    font-size: 14px;
+    top: -30px;
+    color: ${(props) => {
+      if (props.id === 'userid_1') return '#70a1ff';
+      if (props.id === 'userpwd_1') return '#ff6b81';
+    }};
+  }
+  ::placeholder {
+    text-align: center;
+    font-size: 15px;
+    color: #34495e
+  }
+`;
