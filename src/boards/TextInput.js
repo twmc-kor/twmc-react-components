@@ -6,8 +6,10 @@ function TextInputBoard() {
   const [state, setState] = useState({
     userid_1: '',
     userid_2: '',
+    userid_3: '',
     userpwd_1: '',
     userpwd_2: '',
+    userpwd_3: '',
   });
 
   function handleChange(e) {
@@ -42,6 +44,16 @@ function TextInputBoard() {
           placeholder="Input Your ID"
           required
         />
+        <TextInput
+          type="text"
+          value={state.userid_3}
+          onChange={handleChange}
+          id="userid_3"
+          name="userid_3"
+          placeholder="ERROR"
+          disabled
+          required
+        />
       </Form>
       <P>Text-PassWord</P>
       <Form>
@@ -63,6 +75,16 @@ function TextInputBoard() {
           id="userpwd_2"
           name="userpwd_2"
           placeholder="Input Your PassWord"
+          required
+        />
+        <TextInput
+          type="password"
+          value={state.userpwd_3}
+          onChange={handleChange}
+          id="userpwd_3"
+          name="userpwd_3"
+          placeholder="ERROR"
+          disabled
           required
         />
       </Form>
