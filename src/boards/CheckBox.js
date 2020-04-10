@@ -1,32 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {CheckBox} from '../components';
 import styled from 'styled-components';
 
-class CheckBoxBoard extends Component {
-    state ={
-        checked: false
-    }
+export default function CheckBoxBoard() {
 
-
-    handleChange = (e) => {
-        this.setState({
-            checked: e.target.checked
-        });
+    const [checked, setChecked] = useState(false);
+    function handleChange (e) {
+        // e.preventdefault();
+        setChecked(e.target.checked);
     }
-    render() {
-        
-        return(
-            <Content>
-                <label>
-                    <P>CheckBox-Basic</P>
-                    <CheckBox 
-                        checked={this.state.checked}
-                        onChange={this.handleChange}
-                        color="salmon" />
-                </label>
-            </Content>
-        );
-    }
+    return(
+        <Content>
+            <label value="top">
+                <P>CheckBox-Basic</P>
+                <CheckBox 
+                    checked={checked}
+                    onChange={handleChange}
+                    color="salmon" />
+                <span style={{marginLeft:10}}>Check-box</span>
+            </label>
+        </Content>
+    );
 }
 
 const Content = styled.div`
@@ -43,6 +37,3 @@ const P = styled.div`
   color: #495057;
   cursor: default;
 `;
-
-
-export default CheckBoxBoard;
