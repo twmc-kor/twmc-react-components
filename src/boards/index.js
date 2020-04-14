@@ -1,4 +1,5 @@
 import ButtonBoard from './Button';
 import TextInputBoard from './TextInput';
+import ToggleSwitchBoard from './ToggleSwitch';
 
-export {ButtonBoard, TextInputBoard};
+export {ButtonBoard, TextInputBoard, ToggleSwitchBoard};
