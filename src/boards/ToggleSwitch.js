@@ -1,48 +1,52 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ToggleSwitch} from '../components';
 import styled from 'styled-components';
 
 function SwitchBoard() {
   const [state, setState] = useState({
-    normal_1: '',
-    normal_2: '',
-    normal_3: '',
-    slim_1: '',
-    slim_2: '',
-    slim_3: '',
+    normal_1: false,
+    normal_2: false,
+    normal_3: false,
+    slim_1: false,
+    slim_2: false,
+    slim_3: false,
   });
 
-  function handleChange(e) {
-    const updatedState = {
+  useEffect(()=>{
+    console.log(state);
+  });
+
+  const handleChange = (e) => {
+    setState({
       ...state,
-      [e.target.name]: e.target.value,
-    };
-    setState(updatedState);
-  }
+      [e.target.id]: e.target.checked
+    });
+  };
   return (
     <Content>
+      <h1>The Switch is {state.normal_1 ? 'ON' : 'OFF'}</h1>
       <P>Switch - Normal</P>
       <Div>
         <ToggleSwitch
           type="checkbox"
           id="normal_1"
-          value={state.normal_1}
-          onClick={handleChange}
+          checked={state.normal_1}
+          onChange={handleChange}
         />
         <Label for="normal_1" name="normal_1" />
 
         <ToggleSwitch
           type="checkbox"
           id="normal_2"
-          value={state.normal_2}
-          onClick={handleChange}
+          checked={state.normal_2}
+          onChange={handleChange}
         />
         <Label for="normal_2" name="normal_2" />
         <ToggleSwitch
           type="checkbox"
           id="normal_3"
-          value={state.normal_3}
-          onClick={handleChange}
+          checked={state.normal_3}
+          onChange={handleChange}
         />
         <Label for="normal_3" name="normal_3" />
       </Div>
@@ -51,22 +55,22 @@ function SwitchBoard() {
         <ToggleSwitch
           type="checkbox"
           id="slim_1"
-          value={state.normal_3}
-          onClick={handleChange}
+          checked={state.slim_1}
+          onChange={handleChange}
         />
         <Label for="slim_1" name="slim_1" />
         <ToggleSwitch
           type="checkbox"
           id="slim_2"
-          value={state.normal_3}
-          onClick={handleChange}
+          checked={state.slim_2}
+          onChange={handleChange}
         />
         <Label for="slim_2" name="slim_2" />
         <ToggleSwitch
           type="checkbox"
           id="slim_3"
-          value={state.normal_3}
-          onClick={handleChange}
+          checked={state.slim_3}
+          onChange={handleChange}
         />
         <Label for="slim_3" name="slim_3" />
       </Div>

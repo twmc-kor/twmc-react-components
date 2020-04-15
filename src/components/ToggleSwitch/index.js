@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function ToggleSwitch(props) {
-  const {id, name, value, onClick, children} = props;
+  const {id, name, onChange, checked, children} = props;
   return (
-    <Container id={id} name={name} value={value} onClick={onClick}>
+    <Container id={id} name={name} checked={checked} onChange={onChange}>
       {children}
     </Container>
   );
