@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import {CheckBox} from '../components';
 import styled from 'styled-components';
 
@@ -9,15 +9,55 @@ export default function CheckBoxBoard() {
         // e.preventdefault();
         setChecked(e.target.checked);
     }
+
+    const initialState = {
+        clickA: false,
+        clickB: false,
+        clickC: false,
+        all: false
+    }
+
+    const reducer = (state, action) => ({...state, ...action})
+    const [state, setState] = useReducer(reducer, initialState);
+
+    const clearFilter = () => setState(initialState);
+
     return(
         <Content>
-            <label value="top">
-                <P>CheckBox-Basic</P>
+            <P>Check-Box</P>
+            <div>
+                <Button onClick={() => clearFilter()}>RESET</Button>
+                <input 
+                type="checkbox" />
+                <span style={{marginLeft:10}}>check/uncheck all</span>
+            </div>
+            <br />
+            <label>        
                 <CheckBox 
-                    checked={checked}
-                    onChange={handleChange}
-                    color="salmon" />
-                <span style={{marginLeft:10}}>Check-box</span>
+                checked={state.clickA}
+                isClicked={v => setState({clickA : v})}
+                onChange={handleChange} />
+                <span style={{marginLeft:10,fontSize:25}}>
+                    Item A is  {state.clickA ? "checked" : "unchecked"}
+                </span>
+            </label>
+            <label>
+                <CheckBox 
+                checked={state.clickB}
+                isChanged={v => setState({clickB : v})}
+                onChange={handleChange} />
+                <span style={{marginLeft:10,fontSize:25}}>
+                Item B is  {state.clickB ? "checked" : "unchecked"}
+                </span>
+            </label>
+            <label>
+                <CheckBox 
+                checked={state.clickC}
+                isClickC={v => setState({clickC : v})}
+                onChange={handleChange} />
+                <span style={{marginLeft:10,fontSize:25}}>
+                Item C is  {state.clickC ? "checked" : "unchecked"}
+                </span>
             </label>
         </Content>
     );
@@ -36,4 +76,9 @@ const P = styled.div`
   font-size: 30px;
   color: #495057;
   cursor: default;
+`;
+
+const Button = styled.button`
+    outline: none;
+    background-color: #fdcb6e;
 `;

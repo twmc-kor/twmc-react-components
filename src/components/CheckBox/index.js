@@ -1,14 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// export default function CheckBox(props) {
-//     const {color, children} = props;
-//     return <Container color={color} type="checkbox">{children}</Container>
-// }
-
-// const Container = styled.input`
-//     background-color: ${(props) => props.color};
-// `;
+const Checkbox = ({ isClicked, isChanged, isClickC, onClick, onChange, checked="false", ...props }) => (
+  <CheckboxContainer>
+    <HiddenCheckbox checked={checked} {...props} 
+      onClick={e => {
+        if(isClicked !== undefined) isClicked(e.target.checked);
+        if(isChanged !== undefined) isChanged(e.target.checked);
+        if(isClickC !== undefined) isClickC(e.target.checked);
+      }}/>
+    <StyledCheckbox checked={checked}>
+      <Icon viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12" />
+      </Icon>
+    </StyledCheckbox>
+  </CheckboxContainer>
+)
 
 const CheckboxContainer = styled.div`
   display: inline-block;
@@ -20,8 +27,7 @@ const Icon = styled.svg`
   stroke: white;
   stroke-width: 2px;
 `;
-// Hide checkbox visually but remain accessible to screen readers.
-// Source: https://polished.js.org/docs/#hidevisually
+
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   border: 0;
   clip: rect(0 0 0 0);
@@ -39,6 +45,7 @@ const StyledCheckbox = styled.div`
   display: inline-block;
   width: 16px;
   height: 16px;
+  margin-left: 10px;
   background: ${props => (props.checked ? '#fab1a0' : 'papayawhip')};
   border-radius: 3px;
   transition: all 150ms;
@@ -51,16 +58,5 @@ const StyledCheckbox = styled.div`
     visibility: ${props => (props.checked ? 'visible' : 'hidden')};
   };
 `;
-
-const Checkbox = ({ className, checked, ...props }) => (
-  <CheckboxContainer className={className}>
-    <HiddenCheckbox checked={checked} {...props} />
-    <StyledCheckbox checked={checked}>
-      <Icon viewBox="0 0 24 24">
-        <polyline points="20 6 9 17 4 12" />
-      </Icon>
-    </StyledCheckbox>
-  </CheckboxContainer>
-)
 
 export default Checkbox;
