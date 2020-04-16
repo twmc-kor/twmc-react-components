@@ -28,12 +28,19 @@ const Container = styled.input.attrs((props) => ({
   }
   &:checked + label:after {
     left: ${(props) => {
-      if (props.id === 'normal_1') return 'calc(100% - 3px)';
-      if (props.id === 'normal_2') return 'calc(100% - 3px)';
-      if (props.id === 'normal_3') return 'calc(100% - 3px)';
-      if (props.id === 'slim_1') return 'calc(100% - 0px)';
-      if (props.id === 'slim_2') return 'calc(100% - 0px)';
-      if (props.id === 'slim_3') return 'calc(100% - 0px)';
+      if (
+        props.id === 'normal_1' ||
+        props.id === 'normal_2' ||
+        props.id === 'normal_3'
+      )
+        return 'calc(100% - 3px)';
+
+      if (
+        props.id === 'slim_1' ||
+        props.id === 'slim_2' ||
+        props.id === 'slim_3'
+      )
+        return 'calc(100% - 0px)';
     }};
     transform: translateX(-100%);
     background-color: ${(props) => {
