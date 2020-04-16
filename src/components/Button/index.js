@@ -43,12 +43,9 @@ const Container = styled.button`
   font: 700 20px sans-serif;
   letter-spacing: 1px;
   color: ${(props) => {
-    if (props.mode === 'full') return '#fff';
-    if (props.mode === 'line') return '#748ffc';
+    if (props.mode === 'full' || props.action === 'shadow' || props.action === 'border') return '#fff';
     if (props.mode === 'disabled') return '#ced4da';
     if (props.action === 'slide') return '#000';
-    if (props.action === 'shadow') return '#fff';
-    if (props.action === 'border') return '#fff';
     return '#748ffc';
   }};
   background-color: ${(props) => {
@@ -89,7 +86,7 @@ const Container = styled.button`
     box-shadow: ${(props) => {
       if (props.action === 'slide') return '150px 0 0 0 rgba(0,0,0,0.5) inset';
       if (props.action === 'shadow')
-        return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);';
+      return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);';
     }};
   };
   &:active {
