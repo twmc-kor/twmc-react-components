@@ -27,6 +27,7 @@ function Sidebar() {
       <RouteButton to="/button">Button</RouteButton>
       <RouteButton to="/text-input">TextInput</RouteButton>
       <RouteButton to="/check-box">CheckBox</RouteButton>
+      <RouteButton to="/toggle-switch">ToggleSwitch</RouteButton>
     </Container>
   );
 }

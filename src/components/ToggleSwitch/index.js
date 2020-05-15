@@ -1,45 +1,72 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import propTypes from 'prop-types';
+
+const CommonContainerStyle = css`
+  width: 50px;
+  height: 26px;
+`;
+
+const ToggleStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 3px;
+  background: ${(props) => (props.headColor ? props.headColor : '#ffffff')};
+  box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+`;
+
+const Container = styled.div`
+  position: relative;
+  margin: 10px;
+`;
+
+const CheckboxLabel = styled.label`
+  ${CommonContainerStyle}
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  &::after {
+    ${ToggleStyle}
+  }
+`;
+const Checkbox = styled.input.attrs((props) => ({type: 'checkbox'}))`
+  ${CommonContainerStyle}
+  visibility: hidden;
+  z-index: 1;
+  margin: 0;
+  &:checked + label {
+    background: ${(props) => props.color || '#1876D2'};
+    transition: 0.3s;
+    &::after {
+      ${ToggleStyle}
+      transform: translateX(24px);
+    }
+  }
+`;
 
 export default function ToggleSwitch(props) {
-  const {id, name, value, onClick, children} = props;
+  const id = `toggle-switch-${Math.random().toString(36).substr(2, 9)}`;
   return (
-    <Container id={id} name={name} value={value} onClick={onClick}>
-      {children}
+    <Container>
+      <Checkbox id={id} {...props} />
+      <CheckboxLabel htmlFor={id} color={props.color} />
     </Container>
   );
 }
 
-const Container = styled.input.attrs((props) => ({
-  type: 'checkbox',
-}))`
-  height: 0;
-  width: 0;
-  visibility: hidden;
-  &:checked + label {
-    background: ${(props) => {
-      if (props.id === 'normal_1') return '#5352ed';
-      if (props.id === 'normal_2') return '#ED4C67';
-      if (props.id === 'normal_3') return '#fbc531';
-      if (props.id === 'slim_1') return 'rgba(72, 52, 212, 0.6)';
-      if (props.id === 'slim_2') return 'rgba(237, 76, 103, 0.6)';
-      if (props.id === 'slim_3') return 'rgba(251, 197, 49, 0.6)';
-    }};
-  }
-  &:checked + label:after {
-    left: ${(props) => {
-      if (props.id === 'normal_1') return 'calc(100% - 3px)';
-      if (props.id === 'normal_2') return 'calc(100% - 3px)';
-      if (props.id === 'normal_3') return 'calc(100% - 3px)';
-      if (props.id === 'slim_1') return 'calc(100% - 0px)';
-      if (props.id === 'slim_2') return 'calc(100% - 0px)';
-      if (props.id === 'slim_3') return 'calc(100% - 0px)';
-    }};
-    transform: translateX(-100%);
-    background-color: ${(props) => {
-      if (props.id === 'slim_1') return '#5352ed';
-      if (props.id === 'slim_2') return '#ED4C67';
-      if (props.id === 'slim_3') return '#fbc531';
-    }};
-  }
-`;
+ToggleSwitch.prototype = {
+  color: propTypes.string,
+  name: propTypes.string.isRequired,
+  checked: propTypes.bool.isRequired,
+  onChange: propTypes.func,
+};

@@ -1,89 +1,78 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ToggleSwitch} from '../components';
 import styled from 'styled-components';
 
+const Good = () => (
+  <img src={require('../assets/good.png')} alt="good" style={{width: '30px', marginRight: 10}} />
+);
+const Bad = () => (
+  <img src={require('../assets/bad.png')} alt="bad" style={{width: '30px', marginRight: 10}} />
+);
+
+const colorBox = {
+  toggleA: {head: '#fbc531', body: '#5352ed'},
+  toggleB: {head: '#5352ed', body: '#ED4C67'},
+  toggleC: {head: '#fff', body: '#fbc531'},
+};
+
 function SwitchBoard() {
   const [state, setState] = useState({
-    normal_1: '',
-    normal_2: '',
-    normal_3: '',
-    slim_1: '',
-    slim_2: '',
-    slim_3: '',
+    toggleA: false,
+    toggleB: false,
+    toggleC: false,
   });
 
-  function handleChange(e) {
-    const updatedState = {
+  const handleChange = (e) => {
+    setState({
       ...state,
-      [e.target.name]: e.target.value,
-    };
-    setState(updatedState);
-  }
+      [e.target.name]: e.target.checked,
+    });
+  };
   return (
-    <Content>
-      <P>Switch - Normal</P>
-      <Div>
+    <Container>
+      <Content>
+        {state.toggleA ? <Good /> : <Bad />}
         <ToggleSwitch
-          type="checkbox"
-          id="normal_1"
-          value={state.normal_1}
-          onClick={handleChange}
+          color={colorBox.toggleA.body}
+          headColor={colorBox.toggleA.head}
+          name="toggleA"
+          checked={state.toggleA}
+          onChange={handleChange}
         />
-        <Label for="normal_1" name="normal_1" />
-
+      </Content>
+      <Content>
+        {state.toggleB ? <Good /> : <Bad />}
         <ToggleSwitch
-          type="checkbox"
-          id="normal_2"
-          value={state.normal_2}
-          onClick={handleChange}
+          color={colorBox.toggleB.body}
+          headColor={colorBox.toggleB.head}
+          name="toggleB"
+          checked={state.toggleB}
+          onChange={handleChange}
         />
-        <Label for="normal_2" name="normal_2" />
+      </Content>
+      <Content>
+        {state.toggleC ? <Good /> : <Bad />}
         <ToggleSwitch
-          type="checkbox"
-          id="normal_3"
-          value={state.normal_3}
-          onClick={handleChange}
+          name="toggleC"
+          checked={state.toggleC}
+          onChange={handleChange}
         />
-        <Label for="normal_3" name="normal_3" />
-      </Div>
-      <P>Switch - Slim</P>
-      <Div>
-        <ToggleSwitch
-          type="checkbox"
-          id="slim_1"
-          value={state.normal_3}
-          onClick={handleChange}
-        />
-        <Label for="slim_1" name="slim_1" />
-        <ToggleSwitch
-          type="checkbox"
-          id="slim_2"
-          value={state.normal_3}
-          onClick={handleChange}
-        />
-        <Label for="slim_2" name="slim_2" />
-        <ToggleSwitch
-          type="checkbox"
-          id="slim_3"
-          value={state.normal_3}
-          onClick={handleChange}
-        />
-        <Label for="slim_3" name="slim_3" />
-      </Div>
-    </Content>
+      </Content>
+    </Container>
   );
 }
 
 export default SwitchBoard;
 
-const Content = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const Div = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const P = styled.div`
@@ -94,75 +83,4 @@ const P = styled.div`
   font-size: 30px;
   color: #495057;
   cursor: default;
-`;
-
-const Label = styled.label`
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 100px;
-  height: ${(props) => {
-    if (props.name === 'normal_1') return '50px';
-    if (props.name === 'normal_2') return '50px';
-    if (props.name === 'normal_3') return '50px';
-    if (props.name === 'slim_1') return '25px';
-    if (props.name === 'slim_2') return '25px';
-    if (props.name === 'slim_3') return '25px';
-  }};
-  background: ${(props) => {
-    if (props.name === 'normal_1') return '#dcdde1';
-    if (props.name === 'normal_2') return '#dcdde1';
-    if (props.name === 'normal_3') return '#dcdde1';
-    if (props.name === 'slim_1') return '#a4b0be';
-    if (props.name === 'slim_2') return '#a4b0be';
-    if (props.name === 'slim_3') return '#a4b0be';
-  }};
-  display: block;
-  border-radius: 100px;
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    top: ${(props) => {
-      if (props.name === 'normal_1') return '1.8px';
-      if (props.name === 'normal_2') return '1.8px';
-      if (props.name === 'normal_3') return '1.8px';
-      if (props.name === 'slim_1') return '-10px';
-      if (props.name === 'slim_2') return '-10px';
-      if (props.name === 'slim_3') return '-10px';
-    }};
-    left: ${(props) => {
-      if (props.name === 'normal_1') return '3px';
-      if (props.name === 'normal_2') return '3px';
-      if (props.name === 'normal_3') return '3px';
-      if (props.name === 'slim_1') return '0px';
-      if (props.name === 'slim_2') return '0px';
-      if (props.name === 'slim_3') return '0px';
-    }};
-    width: 45px;
-    height: 45px;
-    background: ${(props) => {
-      if (props.name === 'normal_1') return '#fff';
-      if (props.name === 'normal_2') return '#fff';
-      if (props.name === 'normal_3') return '#fff';
-      if (props.name === 'slim_1') return '#dcdde1';
-      if (props.name === 'slim_2') return '#dcdde1';
-      if (props.name === 'slim_3') return '#dcdde1';
-    }};
-    border-radius: 45px;
-    transition: 0.3s;
-  }
-  &:active:after {
-    width: 55px;
-  }
-  &:hover {
-    background-color: ${(props) => {
-      if (props.name === 'normal_1') return '#95a5a6';
-      if (props.name === 'normal_2') return '#95a5a6';
-      if (props.name === 'normal_3') return '#95a5a6';
-    }};
-  }
-
-  &:hover:after {
-    color: red;
-  }
 `;
