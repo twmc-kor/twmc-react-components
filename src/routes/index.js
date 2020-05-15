@@ -1,7 +1,12 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Overview from '../components/Overview';
-import {ButtonBoard, TextInputBoard, ToggleSwitchBoard} from '../boards';
+import {
+  ButtonBoard,
+  TextInputBoard,
+  CheckBoxBoard,
+  ToggleSwitchBoard,
+} from '../boards';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -20,6 +25,7 @@ const RootRouter = () => {
         <Route exact path="/" component={Overview} />
         <Route path="/button" component={ButtonBoard} />
         <Route path="/text-input" component={TextInputBoard} />
+        <Route path="/check-box" component={CheckBoxBoard} />
         <Route path="/toggle-switch" component={ToggleSwitchBoard} />
       </Switch>
     </Container>
