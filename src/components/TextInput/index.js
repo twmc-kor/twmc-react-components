@@ -1,69 +1,91 @@
 import React from 'react';
-import TextStandard from './TextStandard';
-import TextName from './TextName';
-import TextError from './TextError';
 import styled from 'styled-components';
 
-
-class Div extends React.Component {
-  render() {
-    const { color, children } = this.props;
-    return(
-      <DivField color={color}>
-        {children}
-      </DivField>
-    );
-  }
-}
-
-
-
-function TextInput () {
-  return(
-    <Container>
-      <Title>Input Text(1)</Title>
-     <Div>
-        <TextStandard />
-     </Div>
-     <Title>Input Text(2)</Title>
-     <Div>
-      <TextName />
-     </Div>
-     <Title>Input Text(3)</Title>
-     <Div>
-      <TextError />
-     </Div>
+export default function Input(props) {
+  const {
+    mode,
+    type,
+    value,
+    onChange,
+    id,
+    name,
+    placeholder,
+    autoComplete = 'off',
+    disabled,
+    children,
+  } = props;
+  return (
+    <Container
+      mode={mode}
+      type={type}
+      value={value}
+      onChange={onChange}
+      name={name}
+      id={id}
+      placeholder={placeholder}
+      autoComplete={autoComplete}
+      disabled={disabled}>
+      {children}
     </Container>
-  ); 
+  );
 }
 
-export default TextInput ;
-
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`;
-
-const DivField = styled.div`
-  display: flex;
-  justify-content: center;
-  border-radius: 7px;
-  width: 93%;
-  height: 20%;
-  margin: auto;
-  margin: 20px 20px;
-  background-color: white;
-`;
-
-const Title =styled.h4`
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  margin: 10px;
-  font-weight: 300;
+const Container = styled.input`
+  width: 170px;
+  border: ${(props) => {
+    if (props.id === 'userid_1') return '0';
+    if (props.id === 'userid_2') return '2.5px solid #a4b0be';
+    if (props.id === 'userid_3') return '1.5px solid #c0392b';
+    if (props.id === 'userpwd_1') return '0';
+    if (props.id === 'userpwd_2') return '2.5px solid #a4b0be';
+    if (props.id === 'userpwd_3') return '1.5px solid #c0392b';
+  }};
+  border-bottom: ${(props) => {
+    if (props.id === 'userid_1') return '2.5px solid #70a1ff';
+    if (props.id === 'userpwd_1') return '2.5px solid #ff6b81';
+  }};
+  border-radius: ${(props) => {
+    if (props.id === 'userid_3') return '3.5px';
+    if (props.id === 'userpwd_3') return '3.5px';
+  }};
+  outline: 0;
+  margin-left: ${(props) => {
+    if (props.id === 'userid_3') return '30px';
+    if (props.id === 'userpwd_3') return '30px';
+  }};
+  padding: ${(props) => {
+    if (props.id === 'userid_1') return '0.5rem 0';
+    if (props.id === 'userid_2') return '0.5rem 5px';
+    if (props.id === 'userpwd_1') return '0.5rem 0';
+    if (props.id === 'userpwd_2') return '0.5rem 5px';
+  }};
+  box-shadow: none;
   font-size: 20px;
+  color: black;
+  &:focus ~ label,
+  &:valid ~ label {
+    font-size: 14px;
+    top: -25px;
+    color: ${(props) => {
+      if (props.id === 'userid_1') return '#70a1ff';
+      if (props.id === 'userpwd_1') return '#ff6b81';
+    }};
+  }
+  ::placeholder {
+    text-align: center;
+    font-size: 15px;
+    color: ${(props) => {
+      if (props.id === 'userid_2') return '#34495e';
+      if (props.id === 'userid_3') return '#c0392b';
+      if (props.id === 'userpwd_2') return '#34495e';
+      if (props.id === 'userpwd_3') return '#c0392b';
+    }};
+  }
+  :focus {
+    border: ${(props) => {
+      if (props.id === 'userid_2') return '2.5px solid #70a1ff';
+      if (props.id === 'userpwd_2') return '2.5px solid #ff6b81';
+    }};
+  }
+  transition: 0.5s;
 `;
