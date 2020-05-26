@@ -26,6 +26,7 @@ function Sidebar() {
       <RouteButton to="/">Overview</RouteButton>
       <RouteButton to="/button">Button</RouteButton>
       <RouteButton to="/text-input">TextInput</RouteButton>
+      <RouteButton to="/check-box">Check-box</RouteButton>
     </Container>
   );
 }

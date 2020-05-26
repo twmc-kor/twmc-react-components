@@ -18,9 +18,6 @@ function ButtonBoard() {
         <Button mode="used" color size="small">최근 전적 확인</Button>
         <Button mode="used" color size="small">로그아웃</Button>
       </div>
-      {/* <div>
-        <P>Button - Icon</P>
-      </div> */}
     </Content>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 import {CheckBox} from '../components';
 import styled from 'styled-components';
 
-export default function CheckBoxBoard() {
+function CheckBoxBoard() {
 
     // const [checking, setChecking] = useState({
     //     checkItem : [
@@ -90,3 +90,5 @@ const Button = styled.button`
     outline: none;
     background-color: #fdcb6e;
 `;
+
+export default CheckBoxBoard;
