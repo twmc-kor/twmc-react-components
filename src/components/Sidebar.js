@@ -28,6 +28,7 @@ function Sidebar() {
       <RouteButton to="/text-input">TextInput</RouteButton>
       <RouteButton to="/check-box">CheckBox</RouteButton>
       <RouteButton to="/toggle-switch">ToggleSwitch</RouteButton>
+      <RouteButton to="/profile-image">ProfileImage</RouteButton>
     </Container>
   );
 }
