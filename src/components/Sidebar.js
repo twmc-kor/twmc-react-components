@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -9,21 +9,31 @@ const Container = styled.div`
   justify-content: flex-start;
   height: 100%;
   width: 30%;
-  background-color: #ddd;
+  background-color: #3f72af;
 `;
-const RouteButton = styled(Link)`
+const P = styled.div`
+  margin: 25px;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  color: #112d4e;
+`;
+const RouteButton = styled(NavLink)`
     margin: 5px;
     text-decoration: none;
-    color: #6F1E51;
-    font-size: 20px;
-    font-weight: 600;
+    color: #dbe2ef;
+    font-size: 22px;
+    font-weight: 500;
+    &.active {
+      color: #ff9a00;
+      font-family: 'Roboto', sans-serif;
+    }
 `;
 
 function Sidebar() {
   return (
     <Container color="#ddd">
-      <h2>Component list</h2>
-      <RouteButton to="/">Overview</RouteButton>
+      <P>Component list</P>
+      <RouteButton exact to="/">Overview</RouteButton>
       <RouteButton to="/button">Button</RouteButton>
       <RouteButton to="/text-input">TextInput</RouteButton>
       <RouteButton to="/check-box">CheckBox</RouteButton>
