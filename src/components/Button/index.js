@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+const DEFAULT_BACKGROUND_COLOR = "#3d84a8"
 
 export default function Button(props) {
-  const {
-    mode,
-    color = '#748ffc',
-    action,
-    disabled,
-    onClick,
+  const { 
     children,
+    mode,
+    color = DEFAULT_BACKGROUND_COLOR,
+    action,
+    disabled = false,
   } = props;
   return (
     <Container
@@ -16,7 +18,7 @@ export default function Button(props) {
       color={color}
       action={action}
       disabled={disabled}
-      onClick={onClick}>
+      {...props}>
       {children}
     </Container>
   );
@@ -95,3 +97,10 @@ const Container = styled.button`
   }};
   }
 `;
+
+Button.propType = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  mode: PropTypes.string,
+  color: PropTypes.string,
+  action: PropTypes.string
+}
