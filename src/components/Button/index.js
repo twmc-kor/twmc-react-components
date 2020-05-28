@@ -1,97 +1,102 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import propTypes from 'prop-types';
 
 export default function Button(props) {
+  
   const {
-    mode,
-    color = '#748ffc',
-    action,
-    disabled,
-    onClick,
     children,
+    mode,
+    action,
+    disabled = false,
   } = props;
   return (
     <Container
       mode={mode}
-      color={color}
       action={action}
-      disabled={disabled}
-      onClick={onClick}>
+      {...props}>
       {children}
+      {disabled && <DisabledContainer />}
     </Container>
   );
 }
-
+// contained를 기본스타일로 지정하기
 const Container = styled.button`
-  width: ${(props) => {
-    if (props.mode === 'icon') return '75px';
-    return '150px';
-  }};
-  height: ${(props) => {
-    if (props.mode === 'icon') return '70px';
-  }};
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 50px;
   padding: 10px;
-  margin: 0 5px 10px 5px;
-  border: ${(props) => {
-    if (props.mode === 'line') return '2px solid #748ffc';
+  margin: 10px 5px;
+  border: ${props => {
+    if(props.mode === "line") return "1px solid #f59f00"
+    return "none"
   }};
-  border-style: ${(props) => (props.mode === 'line' ? 'solid' : 'hidden')};
-  border-radius: ${(props) => {
-    if (props.mode === 'icon') return '50%';
-    return '5px';
+  border-radius: 5px;
+  background-color: ${props => {
+    if(props.mode === "line" || props.mode === "text") return "transparent"
+    return "#f59f00"
   }};
-  font: 700 20px sans-serif;
-  letter-spacing: 1px;
-  color: ${(props) => {
-    if (props.mode === 'full' || props.action === 'shadow' || props.action === 'border') return '#fff';
-    if (props.mode === 'disabled') return '#ced4da';
-    if (props.action === 'slide') return '#000';
-    return '#748ffc';
+  font: 600 22px 'Helvetica Neue';
+  color: ${props => {
+    if(props.mode === "line" || props.mode === "text") return "#f59f00"
+    return "#fff"
   }};
-  background-color: ${(props) => {
-    if (props.mode === 'icon') return '#fff';
-    return props.color; //mode='icon'일 경우에만 흰색으로 지정. 나머지는 color props 받아오기
-  }};
-  cursor: ${(props) => {
-    if (props.mode === 'disabled') return 'not-allowed';
-    return 'pointer';
-  }};
-  transition: ${(props) => {
-    if (props.action === 'slide') return 'all 0.9s';
-    if (props.action === 'shadow') return 'all 0.5s';
-    if (props.action === 'border') return 'background 250ms ease-in-out, transform 150ms ease';
-    return 'all 0.3s';
-  }};
-  &:focus {
-    outline: ${(props) => {
-       if (props.action === 'border') return '1px solid #fff';
-       return 'none';
-    }};
-    outline-offset: ${(props) => {
-      if (props.action === 'border') return '-4px';
-    }}
-  };
+  transition: ${props => props.action ? 'all 0.9s' : 'none'};
+  cursor: pointer;
   &:hover {
-    background-color: ${(props) => {
-      if (props.mode === 'full') return '#91a7ff';
-      if (props.mode === 'disabled') return 'none';
-      if (props.action === 'slide') return '#3b5bdb';
-      if (props.action === 'shadow') return '#364fc7';
-      if (props.action === 'border') return '#4263eb';
-      return '#dbe4ff';
+    background-color: ${props => {
+      if(props.mode === "line" || props.mode === "text") return "#ffe8cc"
+      if(props.disabled) return "none"
+      if(props.action) return "#f76707"
+      return "#ffc078"
     }};
-    color: ${(props) => {
-      if (props.action === 'slide') return '#fff';
+    box-shadow: ${props => {
+      if(props.action === "slide") return "150px 0 0 0 rgba(0,0,0,0.3) inset"
+      if (props.action === 'shadow') return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19)'
     }};
-    box-shadow: ${(props) => {
-      if (props.action === 'slide') return '150px 0 0 0 rgba(0,0,0,0.5) inset';
-      if (props.action === 'shadow')
-      return '0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);';
+    border: ${props => {
+      if(props.action === "border") return '2px solid #f76707'
     }};
   };
-  &:active {
-    transform: ${(props) => {
-      if (props.action === 'border') return 'scale(0.99)';
-  }};
+  &:focus {
+    outline: none;
   }
+  &:active {
+    transform: scale(0.989);
+  }
+  &.active {
+    background-color: ${props => {
+      if(props.action === "change") return "#f76707"
+    }};
+  }
+  ${props => (props.disabled ? disabledStyle : null)}
 `;
+
+const DisabledContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  background: #000;
+  opacity: 0.5;
+`;
+const disabledStyle = css`
+  &:active {
+    transform: none;
+  };
+  cursor: not-allowed;
+`;
+
+Button.propTypes = {
+  children: propTypes.oneOfType([propTypes.string, propTypes.element]).isRequired,
+  mode: propTypes.string,
+  action: propTypes.string,
+  onClick: propTypes.func,
+}

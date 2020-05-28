@@ -1,67 +1,87 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from '../components';
 import styled from 'styled-components';
 
-function ButtonBoard() {
-  // const [click, onClickAlert] = useState(false);
-    
+function ButtonBoard({history}) {
+  const [state, setState] = useState('')
+
+  function handleClick(e) {
+    e.preventDefault();
+    setState('성공!');
+  }
   return (
-    <Content>
-      <div> {/* color: 배경색(#748ffc)을 기준으로 함 */}
-        <P>Button - Normal</P>
-        <Button mode="full" onClick={ () => {
-          console.log("This is a Basic button.");
-        }}>contained</Button>
-        <Button mode="line" color="#fff" onClick={ () => {
-          console.log("This is a out-line button.");
-        }}>outlined</Button>
-        <Button color="#fff" onClick={ () => {
-          console.log("This is a text button without line.");
-        }}>text</Button>
-        <Button mode="disabled" color="#868e96" disabled>disabled</Button>
-      </div>
-      <div>
-        <P>Button - Animation</P>
-        <Button action="shadow" onClick={() => {
-          window.confirm('정말로?') 
-          if(true) return console.log("전송!");
-        }
-        }>Ani-1</Button>
-        <Button action="slide">Ani-2</Button>
-        <Button action="border">Ani-3</Button>
-      </div>
-      <div>
-        <P>Button - Icon</P>
-        <Button mode="icon" ><Img src="/img/check.png" /></Button>
-        <Button mode="icon"><Img src="/img/download.png" /></Button>
-        <Button mode="icon" onClick={ () => {
-          alert("정말로 닫으시겠습니까?");
-        }}><Img src="/img/close.png" /></Button>
-        <Button mode="icon" onClick={ () => {
-          alert("정말로 버릴까요?");
-        }}><Img src="/img/trash.png" /></Button>
-      </div>
-    </Content>
+    <Container>
+      <Section>Basic Style</Section>
+      <BasicContainer>
+        <Button>contained</Button>
+        <Button mode="line">outlined</Button>
+        <Button mode="text">text</Button>
+        <Button disabled>disabled</Button>
+      </BasicContainer>
+      <Section>Have Function</Section>
+      <FunctionContainer>
+        <FunctionStyle>
+          <Button action="shadow" onClick={() => {
+            console.log("개발자 모드입니다. 클릭!")
+          }}>Button</Button>
+          <FunctionExplain>개발자 모드에 출력내용 표시하기</FunctionExplain>
+        </FunctionStyle>
+        <FunctionStyle>
+          <Button action="slide" onClick={() => {
+            const message = window.confirm('삭제하시겠습니까?')
+            if(message === true) return console.log("삭제되었습니다.")
+            else if(message === false) return console.log("작업을 취소하였습니다.");
+          }}>Button</Button>
+          <FunctionExplain>확인 알림창 표시하기</FunctionExplain>
+        </FunctionStyle>
+        <FunctionStyle>
+          <Button action="change" onClick={handleClick}>Button</Button>
+          <FunctionExplain>화면에 출력내용 표시하기 {state}</FunctionExplain>
+        </FunctionStyle>
+        <FunctionStyle>
+          <Button action="border" onClick={() => {
+            history.push('/')
+            console.log("메인페이지로 이동!")
+          }}>Button</Button>
+          <FunctionExplain>페이지 이동하기</FunctionExplain>
+        </FunctionStyle>
+      </FunctionContainer>
+    </Container>
   );
 }
 
-const Content = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const P = styled.div`
-  width: 260px;
-  margin-bottom: 15px;
-  padding: 10px;
-  border-bottom: 2px solid #dee2e6;
-  font-size: 30px;
-  color: #495057;
-  cursor: default;
+const BasicContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
-
-const Img = styled.img`
-  width: 30px;
-  height: 30px;
+const FunctionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const Section = styled.div`
+  margin: 30px 0 15px;
+  color: #112d4e;
+  font: 300 30px 'Bangers', cursive;
+  letter-spacing: 0.1em;
+`;
+const FunctionStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 600px;
+`;
+const FunctionExplain = styled.div`
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: 500;
 `;
 
 export default ButtonBoard;
