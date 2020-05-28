@@ -5,8 +5,14 @@ import ProfileImage from '../components/ProfileImage';
 function ProfileImageBoard() {
   return (
     <Container>
-    <h1>Sizes</h1>
+      <h1>Sizes</h1>
       <Content>
+        <ProfileImage
+          src={require('../assets/user.png')}
+          alt="profile"
+          size={30}
+          variant="circle"
+        />
         <ProfileImage
           src={require('../assets/user.png')}
           alt="profile"
@@ -28,24 +34,17 @@ function ProfileImageBoard() {
       </Content>
       <h1>Variants</h1>
       <Content>
-      <ProfileImage
+        <ProfileImage
           src={require('../assets/user.png')}
           alt="profile"
-          size="normal"
           variant="circle"
-        />
-         <ProfileImage
-          src={require('../assets/user.png')}
-          alt="profile"
-          size="normal"
-          variant="rounded"
         />
         <ProfileImage
           src={require('../assets/user.png')}
           alt="profile"
-          size="normal"
-          variant="square"
+          variant="rounded"
         />
+        <ProfileImage src={require('../assets/user.png')} alt="profile" />
       </Content>
     </Container>
   );
@@ -65,8 +64,8 @@ const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 60vh;
-  height: 20vh;
+  width: 65vh;
+  height: 23vh;
   border: 2px solid #dae1e7;
   border-radius: 4px;
 `;
