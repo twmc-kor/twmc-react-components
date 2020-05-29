@@ -91,6 +91,7 @@ const Section = styled.div`
   color: #112d4e;
   font: 300 30px 'Bangers', cursive;
   letter-spacing: 0.1em;
+  cursor: default;
 `;
 const FunctionStyle = styled.div`
   display: flex;
