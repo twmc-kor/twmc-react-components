@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Checkbox = ({ isClicked, isChanged, isClickC, onClick, onChange, checked="false", ...props }) => (
-  <CheckboxContainer>
+export default function CheckBox(props) {
+  const {isClickA, isClickB, isClickC, isClickD, isClickE, isClickF, checked = false} = props;
+  return (
+    <CheckboxContainer>
     <HiddenCheckbox checked={checked} {...props} 
       onClick={e => {
-        if(isClicked !== undefined) isClicked(e.target.checked);
-        if(isChanged !== undefined) isChanged(e.target.checked);
+        if(isClickA !== undefined) isClickA(e.target.checked);
+        if(isClickB !== undefined) isClickB(e.target.checked);
         if(isClickC !== undefined) isClickC(e.target.checked);
+        if(isClickD !== undefined) isClickD(e.target.checked);
+        if(isClickE !== undefined) isClickE(e.target.checked);
+        if(isClickF !== undefined) isClickF(e.target.checked);
       }}/>
     <StyledCheckbox checked={checked}>
       <Icon viewBox="0 0 24 24">
@@ -15,7 +20,8 @@ const Checkbox = ({ isClicked, isChanged, isClickC, onClick, onChange, checked="
       </Icon>
     </StyledCheckbox>
   </CheckboxContainer>
-)
+  );
+}
 
 const CheckboxContainer = styled.div`
   display: inline-block;
@@ -29,7 +35,7 @@ const Icon = styled.svg`
 `;
 
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-  border: 0;
+  /* border: 0; */
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
@@ -58,5 +64,3 @@ const StyledCheckbox = styled.div`
     visibility: ${props => (props.checked ? 'visible' : 'hidden')};
   };
 `;
-
-export default Checkbox;
