@@ -3,14 +3,16 @@ import {Button} from '../components';
 import styled from 'styled-components';
 
 function ButtonBoard({history}) {
-  const [state, setState] = useState('')
+  // 페이지 이동F
+  const [state, setState] = useState('');
 
   function handleClick(e) {
     e.preventDefault();
-    setState('성공!');
+    setState('Perfect!');
   }
   return (
     <Container>
+      {/* Basic Style */}
       <Section>Basic Style</Section>
       <BasicContainer>
         <Button>contained</Button>
@@ -18,34 +20,52 @@ function ButtonBoard({history}) {
         <Button mode="text">text</Button>
         <Button disabled>disabled</Button>
       </BasicContainer>
+      {/* Basic Style */}
+      {/* Have Function */}
       <Section>Have Function</Section>
       <FunctionContainer>
         <FunctionStyle>
-          <Button action="shadow" onClick={() => {
-            console.log("개발자 모드입니다. 클릭!")
-          }}>Button</Button>
+          <Button
+            action="shadow"
+            onClick={() => {
+              console.log('You clicked this Button.');
+            }}>
+            Button
+          </Button>
           <FunctionExplain>개발자 모드에 출력내용 표시하기</FunctionExplain>
         </FunctionStyle>
         <FunctionStyle>
-          <Button action="slide" onClick={() => {
-            const message = window.confirm('삭제하시겠습니까?')
-            if(message === true) return console.log("삭제되었습니다.")
-            else if(message === false) return console.log("작업을 취소하였습니다.");
-          }}>Button</Button>
+          <Button
+            action="slide"
+            onClick={() => {
+              const message = window.confirm('Did you click this Button?');
+              if (message === true) return console.log('Ok :)');
+              else if (message === false)
+                return console.log('try again :(');
+            }}>
+            Button
+          </Button>
           <FunctionExplain>확인 알림창 표시하기</FunctionExplain>
         </FunctionStyle>
         <FunctionStyle>
-          <Button action="change" onClick={handleClick}>Button</Button>
+          <Button action="color" onClick={handleClick}>
+            Button
+          </Button>
           <FunctionExplain>화면에 출력내용 표시하기 {state}</FunctionExplain>
         </FunctionStyle>
         <FunctionStyle>
-          <Button action="border" onClick={() => {
-            history.push('/')
-            console.log("메인페이지로 이동!")
-          }}>Button</Button>
+          <Button
+            action="border"
+            onClick={() => {
+              history.push('/');
+              console.log('Move to "Overview"!');
+            }}>
+            Button
+          </Button>
           <FunctionExplain>페이지 이동하기</FunctionExplain>
         </FunctionStyle>
       </FunctionContainer>
+      {/* Have Function */}
     </Container>
   );
 }
