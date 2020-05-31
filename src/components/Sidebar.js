@@ -49,12 +49,27 @@ function Sidebar() {
   return (
     <Container color="#ddd">
       <SidebarName>Component list</SidebarName>
-      <RouteButton exact to="/"><img src="/img/twmc_logo.png" alt="twmc logo" style={{width:25, height:25, marginRight:5}}/>TodayWeMakeCode</RouteButton>
+      <RouteButton exact to="/">
+        <img
+          src="/img/twmc_logo.png"
+          alt="twmc logo"
+          style={{width: 25, height: 25, marginRight: 5}}
+        />
+        TodayWeMakeCode
+      </RouteButton>
       <RouteButton to="/button">Button</RouteButton>
       <RouteButton to="/text-input">TextInput</RouteButton>
       <RouteButton to="/check-box">CheckBox</RouteButton>
       <RouteButton to="/toggle-switch">ToggleSwitch</RouteButton>
-      <TwmcLink href="https://github.com/twmc-kor/twmc-react-components"><img src="/img/twmc_logo.png" alt="twmc logo" style={{width:25, height:25, marginRight:5}}/>TWMC GITHUB</TwmcLink>
+      <RouteButton to="/profile-image">ProfileImage</RouteButton>
+      <TwmcLink href="https://github.com/twmc-kor/twmc-react-components">
+        <img
+          src="/img/twmc_logo.png"
+          alt="twmc logo"
+          style={{width: 25, height: 25, marginRight: 5}}
+        />
+        TWMC GITHUB
+      </TwmcLink>
     </Container>
   );
 }
