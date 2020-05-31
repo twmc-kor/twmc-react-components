@@ -33,7 +33,7 @@ const RouteButton = styled(NavLink)`
 `;
 const TwmcLink = styled.a`
   position: absolute;
-  top: 490px;
+  bottom: 20px;
   display: flex;
   align-items: center;
   text-decoration: none;
