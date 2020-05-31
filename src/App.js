@@ -9,12 +9,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f9f7f7;
 `;
 const ContentContainer = styled(Container)`
   flex-direction: row;
   min-width: 1000px;
   height: 80vh;
-  border: 1px solid black;
+  border: 1px solid #3f72af;
   border-radius: 5px;
 `;
 
