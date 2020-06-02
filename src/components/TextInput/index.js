@@ -1,91 +1,67 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
-export default function Input(props) {
-  const {
-    mode,
-    type,
-    value,
-    onChange,
-    id,
-    name,
-    placeholder,
-    autoComplete = 'off',
-    disabled,
-    children,
-  } = props;
+const StyledInput = styled.input`
+  width: 200px;
+  height: ${({size}) => size};
+  background-color: ${({variant}) =>
+    variant === 'filled' ? '#d3dde3' : 'transparent'};
+  border: ${({variant}) =>
+    variant === 'outlined' ? '2px solid #95afc0' : '0'};
+  border-top-left-radius: ${({variant}) =>
+    variant === 'filled' ? '5px' : '0'};
+  border-top-right-radius: ${({variant}) =>
+    variant === 'filled' ? '5px' : '0'};
+  border-bottom: 2px solid #95afc0;
+  font-size: 20px;
+  &:hover {
+    cursor: pointer;
+    border: ${({variant}) => {
+      if (variant === 'outlined') return '2px solid #cf8f8f';
+    }};
+    border-bottom: ${({variant}) => {
+      if (variant === 'standard' || variant === 'filled')
+        return '2px solid #cf8f8f';
+    }};
+    transition: 0.5s;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export default function TextInput(props) {
+  const {type, size, variant, name, label, autocomplete} = props;
+
+  const convertSize = React.useMemo(() => {
+    if (size === 'small') return '40px';
+    if (size === 'normal') return '45px';
+    if (size === 'big') return '55px';
+    return typeof size === 'number' ? `${size}px` : '45px';
+  }, [size]);
+
   return (
-    <Container
-      mode={mode}
-      type={type}
-      value={value}
-      onChange={onChange}
-      name={name}
-      id={id}
-      placeholder={placeholder}
-      autoComplete={autoComplete}
-      disabled={disabled}>
-      {children}
+    <Container>
+      <StyledInput
+        size={convertSize}
+        variant={variant}
+        type={type}
+        name={name}
+        label={label}
+        autocomplete={autocomplete}
+      />
     </Container>
   );
 }
 
-const Container = styled.input`
-  width: 170px;
-  border: ${(props) => {
-    if (props.id === 'userid_1') return '0';
-    if (props.id === 'userid_2') return '2.5px solid #a4b0be';
-    if (props.id === 'userid_3') return '1.5px solid #c0392b';
-    if (props.id === 'userpwd_1') return '0';
-    if (props.id === 'userpwd_2') return '2.5px solid #a4b0be';
-    if (props.id === 'userpwd_3') return '1.5px solid #c0392b';
-  }};
-  border-bottom: ${(props) => {
-    if (props.id === 'userid_1') return '2.5px solid #70a1ff';
-    if (props.id === 'userpwd_1') return '2.5px solid #ff6b81';
-  }};
-  border-radius: ${(props) => {
-    if (props.id === 'userid_3') return '3.5px';
-    if (props.id === 'userpwd_3') return '3.5px';
-  }};
-  outline: 0;
-  margin-left: ${(props) => {
-    if (props.id === 'userid_3') return '30px';
-    if (props.id === 'userpwd_3') return '30px';
-  }};
-  padding: ${(props) => {
-    if (props.id === 'userid_1') return '0.5rem 0';
-    if (props.id === 'userid_2') return '0.5rem 5px';
-    if (props.id === 'userpwd_1') return '0.5rem 0';
-    if (props.id === 'userpwd_2') return '0.5rem 5px';
-  }};
-  box-shadow: none;
-  font-size: 20px;
-  color: black;
-  &:focus ~ label,
-  &:valid ~ label {
-    font-size: 14px;
-    top: -25px;
-    color: ${(props) => {
-      if (props.id === 'userid_1') return '#70a1ff';
-      if (props.id === 'userpwd_1') return '#ff6b81';
-    }};
-  }
-  ::placeholder {
-    text-align: center;
-    font-size: 15px;
-    color: ${(props) => {
-      if (props.id === 'userid_2') return '#34495e';
-      if (props.id === 'userid_3') return '#c0392b';
-      if (props.id === 'userpwd_2') return '#34495e';
-      if (props.id === 'userpwd_3') return '#c0392b';
-    }};
-  }
-  :focus {
-    border: ${(props) => {
-      if (props.id === 'userid_2') return '2.5px solid #70a1ff';
-      if (props.id === 'userpwd_2') return '2.5px solid #ff6b81';
-    }};
-  }
-  transition: 0.5s;
+TextInput.propTypes = {
+  name: propTypes.string,
+  size: propTypes.oneOfType([propTypes.string, propTypes.number]),
+  variant: propTypes.oneOf(['standard', 'filled', 'outlined']),
+};
+
+const Container = styled.div`
+  position: relative;
+  margin: 15px;
 `;

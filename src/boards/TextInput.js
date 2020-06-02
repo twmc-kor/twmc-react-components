@@ -1,130 +1,174 @@
-import React, {useState} from 'react';
-import {TextInput} from '../components';
+import React, {useState, useEffect} from 'react';
+import TextInput from '../components/TextInput';
 import styled from 'styled-components';
+
+const Show = () => <Img src={require('../assets/show.png')} alt="show" />;
+
+const Hide = () => <Img src={require('../assets/hide.png')} alt="hide" />;
 
 function TextInputBoard() {
   const [state, setState] = useState({
-    userid_1: '',
-    userid_2: '',
-    userid_3: '',
-    userpwd_1: '',
-    userpwd_2: '',
-    userpwd_3: '',
+    password: '',
+    showPassword: false,
   });
 
-  function handleChange(e) {
-    const updatedState = {
+  const handleChange = (prop) => (e) => {
+    setState({...state, [prop]: e.target.value});
+  };
+
+  const handleClickShowPassword = (e) => {
+    e.preventDefault();
+    setState({
       ...state,
-      [e.target.name]: e.target.value,
-    };
-    setState(updatedState);
-  }
+      showPassword: !state.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    handleChange();
+  }, []);
 
   return (
-    <Content>
-      <P>Text-ID</P>
-      <Form>
-        <TextField>
+    <Container>
+      <form autoComplete="off">
+        <H1> Variant Styled</H1>
+        <Content>
+          <Label variant="standard">Your ID:</Label>
+          <TextInput type="text" size="big" variant="standard" />
+          <TextInput type="text" size="big" variant="filled" />
+          <Label variant="filled">Your ID:</Label>
+          <TextInput type="text" size="big" variant="outlined" />
+          <Label variant="outlined">Your ID:</Label>
+        </Content>
+        <Content>
+          <Label variant="standard">Your PASSWORD:</Label>
           <TextInput
-            type="text"
-            value={state.userid_1}
-            onChange={handleChange}
-            id="userid_1"
-            name="userid_1"
-            required
+            variant="standard"
+            size="big"
+            type={state.showPassword ? 'text' : 'password'}
+            value={state.password}
+            onChange={handleChange('password')}
           />
-          <Label for="userid_1">Your ID:</Label>
-        </TextField>
-        <TextInput
-          type="text"
-          value={state.userid_2}
-          onChange={handleChange}
-          id="userid_2"
-          name="userid_2"
-          placeholder="Input Your ID"
-          required
-        />
-        <TextInput
-          type="text"
-          value={state.userid_3}
-          onChange={handleChange}
-          id="userid_3"
-          name="userid_3"
-          placeholder="ERROR"
-          disabled
-          required
-        />
-      </Form>
-      <P>Text-PassWord</P>
-      <Form>
-        <TextField>
+          <Button
+            variant="standard"
+            size="big"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}>
+            {state.showPassword ? <Show /> : <Hide />}
+          </Button>
           <TextInput
-            type="password"
-            value={state.userpwd_1}
-            onChange={handleChange}
-            id="userpwd_1"
-            name="userpwd_1"
-            required
+            variant="filled"
+            size="big"
+            type={state.showPassword ? 'text' : 'password'}
+            value={state.password}
+            onChange={handleChange('password')}
           />
-          <Label for="userpwd_1">Your PassWord:</Label>
-        </TextField>
-        <TextInput
-          type="password"
-          value={state.userpwd_2}
-          onChange={handleChange}
-          id="userpwd_2"
-          name="userpwd_2"
-          placeholder="Input Your PassWord"
-          required
-        />
-        <TextInput
-          type="password"
-          value={state.userpwd_3}
-          onChange={handleChange}
-          id="userpwd_3"
-          name="userpwd_3"
-          placeholder="ERROR"
-          disabled
-          required
-        />
-      </Form>
-    </Content>
+          <Button
+            variant="filled"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}>
+            {state.showPassword ? <Show /> : <Hide />}
+          </Button>
+          <Label variant="filled">Your PASSWORD:</Label>
+          <TextInput
+            size="big"
+            variant="outlined"
+            type={state.showPassword ? 'text' : 'password'}
+            value={state.password}
+            onChange={handleChange('password')}
+          />
+          <Button
+            variant="outlined"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}>
+            {state.showPassword ? <Show /> : <Hide />}
+          </Button>
+          <Label variant="outlined">Your PASSWORD:</Label>
+        </Content>
+      </form>
+    </Container>
   );
 }
 
 export default TextInputBoard;
 
-const Content = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const P = styled.div`
-  width: 300px;
-  margin: 25px 0 25px 0;
-  padding: 10px;
-  border-bottom: 2px solid #dee2e6;
-  font-size: 30px;
-  color: #495057;
-  cursor: default;
-`;
-
-const Form = styled.form`
-  display: flex;
-`;
-
-const TextField = styled.div`
+const Content = styled.div`
   position: relative;
-  width: 200px;
-  height: 44px;
-  line-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 50px;
+`;
+
+const H1 = styled.h1`
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  left: ${({variant}) => {
+    if (variant === 'standard') return '25%';
+    if (variant === 'filled') return '58%';
+    if (variant === 'outlined') return '91%';
+  }};
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+
+  border: 0;
+  border-radius: 50%;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(138, 123, 123, 0.2);
+  }
+`;
+
+const Img = styled.img`
+  display: flex;
+  margin: auto;
+  width: 25px;
+  height: 25px;
 `;
 
 const Label = styled.label`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: #95afc0;
+  top: ${({variant}) => {
+    if (variant === 'standard') return '10%';
+    if (variant === 'filled') return '20%';
+    if (variant === 'outlined') return '6%';
+  }};
+  left: ${({variant}) => {
+    if (variant === 'standard') return '2%';
+    if (variant === 'filled') return '36%';
+    if (variant === 'outlined') return '71%';
+  }};
+  background-color: ${({variant}) => {
+    if (variant === 'outlined') return '#fff';
+  }};
+  font-size: ${({variant}) => {
+    if (variant === 'standard') return '15px';
+    if (variant === 'filled') return '8px';
+  }};
+  font-weight: ${({variant}) => {
+    if (variant === 'standard') return '400';
+    if (variant === 'filled') return '600';
+  }};
+  color: ${({variant}) => {
+    if (variant === 'standard') return '15px';
+    if (variant === 'filled') return '#fff';
+  }};
   cursor: text;
 `;
