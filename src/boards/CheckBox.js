@@ -35,19 +35,21 @@ export default function CheckBoxBoard() {
       </ControlButton>
       <CheckboxContainer>
         <CheckBox
-          checked={check.a}
+          value={check.a}
           onClick={(value) =>
             setCheck({
               ...check,
               a: value,
             })
           }
+          assetElement={<StyledImage src="/img/react.png" />}
         />
+
         <CheckStatus>{check.a ? 'Hello' : 'GoodBye'}</CheckStatus>
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={check.b}
+          value={check.b}
           onClick={(value) =>
             setCheck({
               ...check,
@@ -59,7 +61,7 @@ export default function CheckBoxBoard() {
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={check.c}
+          value={check.c}
           onClick={(value) =>
             setCheck({
               ...check,
@@ -76,7 +78,7 @@ export default function CheckBoxBoard() {
       </ControlButton>
       <CheckboxContainer>
         <CheckBox
-          checked={img.d}
+          value={img.d}
           onClick={(value) =>
             setImg({
               ...img,
@@ -88,7 +90,7 @@ export default function CheckBoxBoard() {
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={img.e}
+          value={img.e}
           onClick={(value) =>
             setImg({
               ...img,
@@ -100,7 +102,7 @@ export default function CheckBoxBoard() {
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={img.f}
+          value={img.f}
           onClick={(value) =>
             setImg({
               ...img,
@@ -166,4 +168,12 @@ const CheckStatus = styled.div`
   width: 100px;
   height: 30px;
   font: 500 22px 'Helvetica Neue';
+`;
+
+const StyledImage = styled.img`
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 16px;
 `;

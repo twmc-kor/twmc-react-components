@@ -3,27 +3,20 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 export default function CheckBox(props) {
-  const {onClick, type, checked = false} = props;
+  const {onClick, type, value = false} = props;
   return (
     <CheckboxContainer>
       <HiddenCheckbox {...props} onClick={(e) => onClick(e.target.checked)} />
-      <StyledCheckbox checked={checked} type={type}>
-        {/* <Icon viewBox="0 0 24 24">
-          <polyline points="20 6 9 17 4 12" />
-        </Icon> */}
-        <Img src="/img/react.png" />
+      <StyledCheckbox checked={value} type={type}>
+        {props.assetElement || (
+          <Icon viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12" />
+          </Icon>
+        )}
       </StyledCheckbox>
     </CheckboxContainer>
   );
 }
-
-const Img = styled.img`
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 18px;
-  height: 16px;
-`;
 
 const CheckboxContainer = styled.div`
   vertical-align: middle;
@@ -54,24 +47,21 @@ const StyledCheckbox = styled.div`
   width: 20px;
   height: 20px;
   margin-left: 10px;
-  background: ${(props) => (props.checked ? '#fff' : '#999')};
-  /* background: ${(props) => (props.checked ? '#fab1a0' : 'papayawhip')}; */
+  background: ${(props) => (props.checked ? '#fab1a0' : 'papayawhip')};
   border-radius: 3px;
   transition: all 150ms;
 
   ${HiddenCheckbox}:focus + & {
     box-shadow: 0 0 0 3px pink;
   }
-  ${Img} {
+  ${(props) => props.assetElement} {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
-  /* ${Icon} {
-    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
-  } */
 `;
 
 CheckBox.propTypes = {
-  checked: PropTypes.bool.isRequired,
+  value: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   type: PropTypes.string,
+  asset: PropTypes.element,
 };
