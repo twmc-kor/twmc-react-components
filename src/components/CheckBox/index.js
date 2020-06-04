@@ -1,41 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function CheckBox(props) {
-  const {
-    isClickA,
-    isClickB,
-    isClickC,
-    hidden,
-    // isClickD,
-    // isClickE,
-    // isClickF,
-    checked = false,
-  } = props;
+  const {onClick, type, checked = false} = props;
   return (
     <CheckboxContainer>
-      <HiddenCheckbox
-        checked={checked}
-        {...props}
-        hidden={hidden}
-        onClick={(e) => {
-          if (isClickA !== undefined) isClickA(e.target.checked);
-          if (isClickB !== undefined) isClickB(e.target.checked);
-          if (isClickC !== undefined) isClickC(e.target.checked);
-          // if (isClickD !== undefined) isClickD(e.target.checked);
-          // if (isClickE !== undefined) isClickE(e.target.checked);
-          // if (isClickF !== undefined) isClickF(e.target.checked);
-        }}
-      />
-      {/* checkbox 스타일링 된 부분 */}
-      <StyledCheckbox checked={checked}>
-        <Icon viewBox="0 0 24 24">
+      <HiddenCheckbox {...props} onClick={(e) => onClick(e.target.checked)} />
+      <StyledCheckbox checked={checked} type={type}>
+        {/* <Icon viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12" />
-        </Icon>
+        </Icon> */}
+        <Img src="/img/react.png" />
       </StyledCheckbox>
     </CheckboxContainer>
   );
 }
+
+const Img = styled.img`
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 16px;
+`;
 
 const CheckboxContainer = styled.div`
   vertical-align: middle;
@@ -43,7 +31,6 @@ const CheckboxContainer = styled.div`
 `;
 
 const HiddenCheckbox = styled.input.attrs({type: 'checkbox'})`
-  display: ${(props) => (props.hidden ? 'none' : null)};
   position: absolute;
   width: 1px;
   height: 1px;
@@ -62,18 +49,29 @@ const Icon = styled.svg`
   stroke-width: 2px;
 `;
 const StyledCheckbox = styled.div`
+  position: relative;
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
-  background: ${(props) => (props.checked ? '#fab1a0' : 'papayawhip')};
+  background: ${(props) => (props.checked ? '#fff' : '#999')};
+  /* background: ${(props) => (props.checked ? '#fab1a0' : 'papayawhip')}; */
   border-radius: 3px;
   transition: all 150ms;
 
   ${HiddenCheckbox}:focus + & {
     box-shadow: 0 0 0 3px pink;
   }
-  ${Icon} {
+  ${Img} {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
   }
+  /* ${Icon} {
+    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
+  } */
 `;
+
+CheckBox.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};

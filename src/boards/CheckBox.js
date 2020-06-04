@@ -1,140 +1,133 @@
-import React, {useState, useReducer} from 'react';
+import React, {useState} from 'react';
 import {CheckBox} from '../components';
 import styled from 'styled-components';
 
 export default function CheckBoxBoard() {
-  const [check, setCheck] = useState({
-    // clicked: false,
-    msg: 'uncheck',
-  });
-  function handleChange() {
-    // e.preventdefault();
-    // setCheck(e.target.checked);
-    setCheck({
-      check: !check.clicked,
-      msg: check.clicked ? 'uncheck' : 'check',
-    });
-  }
-
   const initialStateA = {
-    clicked: false,
-    clickA: false,
-    clickB: false,
-    clickC: false,
-    all: false,
+    a: false,
+    b: false,
+    c: false,
   };
-  //   const checkedStateA = {
-  //     click: true,
-  //   };
-
-  //   const initialStateB = {
-  //     clickD: false,
-  //     clickE: false,
-  //     clickF: false,
-  //     all: false,
-  //   };
-  //   const checkedStateB = {
-  //     clickD: true,
-  //     clickE: true,
-  //     clickF: true,
-  //     all: true,
-  //   };
-
-  const reducer = (state, action) => ({...state, ...action});
-  const [state, setState] = useReducer(reducer, initialStateA);
-
-  const clearFilterA = () => setState(initialStateA);
-  //   const checkedFilterA = () => setState(checkedStateA);
-  //   const clearFilterB = () => setState(initialStateB);
-  //   const checkedFilterB = () => setState(checkedStateB);
+  const allCheckStateA = {
+    a: true,
+    b: true,
+    c: true,
+  };
+  const initialStateB = {
+    d: false,
+    e: false,
+    f: false,
+  };
+  const allCheckStateB = {
+    d: true,
+    e: true,
+    f: true,
+  };
+  const [check, setCheck] = useState(initialStateA);
+  const [img, setImg] = useState(initialStateB);
 
   return (
     <Container>
       <Section>Basic Style</Section>
-      {/* <StyleContainer> */}
       <ControlButton>
-        {/* button component에서 만든 button 넣기 - merge후 작업 */}
-        <ResetButton onClick={() => clearFilterA()}>RESET</ResetButton>
-        {/* <ResetButton onClick={() => checkedFilterA()}>ALL CHECK</ResetButton> */}
+        <Button onClick={() => setCheck(initialStateA)}>RESET</Button>
+        <Button onClick={() => setCheck(allCheckStateA)}>CHECK ALL</Button>
       </ControlButton>
-      <br />
       <CheckboxContainer>
         <CheckBox
-          checked={state.clickA}
-          isClickA={(v) =>
-            setState({
-              clickA: v,
-              msg: check.msg,
+          checked={check.a}
+          onClick={(value) =>
+            setCheck({
+              ...check,
+              a: value,
             })
           }
-          onChange={handleChange}
         />
-        <p>This box is {check.msg}.</p>
-        {/* {state.clickA ? 'checked :)' : 'unchecked :('} */}
+        <CheckStatus>{check.a ? 'Hello' : 'GoodBye'}</CheckStatus>
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={state.clickB}
-          isClickB={(v) => setState({clickB: v})}
-          onChange={handleChange}
+          checked={check.b}
+          onClick={(value) =>
+            setCheck({
+              ...check,
+              b: value,
+            })
+          }
         />
-        {state.clickB ? 'checked :)' : 'unchecked :('}
+        <CheckStatus>{check.b ? 'Check!' : 'UnCheck..'}</CheckStatus>
       </CheckboxContainer>
       <CheckboxContainer>
         <CheckBox
-          checked={state.clickC}
-          isClickC={(v) => setState({clickC: v})}
-          onChange={handleChange}
-          hidden
+          checked={check.c}
+          onClick={(value) =>
+            setCheck({
+              ...check,
+              c: value,
+            })
+          }
         />
-        {state.clickC ? 'checked :)' : 'unchecked :('}
+        <CheckStatus>{check.c ? 'checking!' : ''}</CheckStatus>
       </CheckboxContainer>
-      {/* </StyleContainer> */}
-      {/* <Section style={{marginTop: 40}}>Custom Style</Section>
-      <StyleContainer>
-        <ControlButton>
-          button component에서 만든 button 넣기 - merge후 작업
-          <ResetButton onClick={() => clearFilterB()}>RESET</ResetButton>
-          <ResetButton onClick={() => checkedFilterB()}>ALL CHECK</ResetButton>
-        </ControlButton>
-        <br />
-        <CheckboxContainer>
-          <CheckBox
-            checked={state.clickD}
-            isClickD={(v) => setState({clickD: v})}
-            onChange={handleChange}
-          />
-          <Status>Item D is {state.clickD ? 'checked' : 'unchecked'}</Status>
-        </CheckboxContainer>
-        <CheckboxContainer>
-          <CheckBox
-            checked={state.clickE}
-            isClickE={(v) => setState({clickE: v})}
-            onChange={handleChange}
-          />
-          <Status>Item E is {state.clickE ? 'checked' : 'unchecked'}</Status>
-        </CheckboxContainer>
-        <CheckboxContainer>
-          <CheckBox
-            checked={state.clickF}
-            isClickF={(v) => setState({clickF: v})}
-            onChange={handleChange}
-          />
-          <Status>Item F is {state.clickF ? 'checked' : 'unchecked'}</Status>
-        </CheckboxContainer>
-      </StyleContainer> */}
+      <Section style={{top: 230}}>Custom Style</Section>
+      <ControlButton style={{marginTop: 80}}>
+        <Button onClick={() => setImg(initialStateB)}>RESET</Button>
+        <Button onClick={() => setImg(allCheckStateB)}>CHECK ALL</Button>
+      </ControlButton>
+      <CheckboxContainer>
+        <CheckBox
+          checked={img.d}
+          onClick={(value) =>
+            setImg({
+              ...img,
+              d: value,
+            })
+          }
+        />
+        <CheckStatus>{img.d ? 'Hello' : 'GoodBye'}</CheckStatus>
+      </CheckboxContainer>
+      <CheckboxContainer>
+        <CheckBox
+          checked={img.e}
+          onClick={(value) =>
+            setImg({
+              ...img,
+              e: value,
+            })
+          }
+        />
+        <CheckStatus>{img.e ? 'Check!' : 'UnCheck..'}</CheckStatus>
+      </CheckboxContainer>
+      <CheckboxContainer>
+        <CheckBox
+          checked={img.f}
+          onClick={(value) =>
+            setImg({
+              ...img,
+              f: value,
+            })
+          }
+          // type={<Icon />}
+        />
+        <CheckStatus>{img.f ? 'checking!' : ''}</CheckStatus>
+      </CheckboxContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 610px;
   height: 450px;
 `;
 
 const Section = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 260px;
   margin-bottom: 15px;
   font: 300 30px 'Bangers', cursive;
@@ -147,12 +140,12 @@ const ControlButton = styled.div`
   align-items: center;
   justify-content: center;
   width: 300px;
-  margin: 0 auto;
+  margin: 50px 0 10px;
 `;
-const ResetButton = styled.button`
+const Button = styled.button`
   padding: 5px 10px;
   margin: 0 10px;
-  font: 500 13px 'Helvetica Neue';
+  font: 500 15px 'Helvetica Neue';
   color: #fff;
   border: 0;
   border-radius: 3px;
@@ -165,13 +158,12 @@ const CheckboxContainer = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  width: 130px;
+  margin: 10px 0 0;
 `;
-// const Status = styled.div`
-//   width: 280px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin: 0 10px;
-//   font-size: 25px;
-// `;
+
+const CheckStatus = styled.div`
+  width: 100px;
+  height: 30px;
+  font: 500 22px 'Helvetica Neue';
+`;
