@@ -42,7 +42,7 @@ export default function CheckBoxBoard() {
               a: value,
             })
           }
-          assetElement={<StyledImage src="/img/react.png" />}
+          asset={<StyledImage src="/img/react.png"/>}
         />
 
         <CheckStatus>{check.a ? 'Hello' : 'GoodBye'}</CheckStatus>
@@ -109,7 +109,6 @@ export default function CheckBoxBoard() {
               f: value,
             })
           }
-          // type={<Icon />}
         />
         <CheckStatus>{img.f ? 'checking!' : ''}</CheckStatus>
       </CheckboxContainer>
@@ -172,7 +171,7 @@ const CheckStatus = styled.div`
 
 const StyledImage = styled.img`
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 1px;
   width: 18px;
   height: 16px;

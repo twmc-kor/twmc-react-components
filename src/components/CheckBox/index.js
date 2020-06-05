@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 export default function CheckBox(props) {
-  const {onClick, type, value = false} = props;
+  const {onClick, asset, value = false} = props;
   return (
     <CheckboxContainer>
       <HiddenCheckbox {...props} onClick={(e) => onClick(e.target.checked)} />
-      <StyledCheckbox checked={value} type={type}>
-        {props.assetElement || (
+      <StyledCheckbox checked={value} asset={asset}>
+        {asset || (
           <Icon viewBox="0 0 24 24">
             <polyline points="20 6 9 17 4 12" />
           </Icon>
@@ -49,13 +49,16 @@ const StyledCheckbox = styled.div`
   margin-left: 10px;
   background: ${(props) => (props.checked ? '#fab1a0' : 'papayawhip')};
   border-radius: 3px;
-  transition: all 150ms;
+  transition: all 130ms;
 
   ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px pink;
+    box-shadow: 0 0 0 2px #ff7675;
   }
-  ${(props) => props.assetElement} {
+  ${Icon} {
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
+  }
+  ${(props) => props.asset} {
+    visibility: ${(props) => (props.checked ? 'visible' : 'inherit')};
   }
 `;
 
