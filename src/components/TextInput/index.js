@@ -59,6 +59,8 @@ TextInput.propTypes = {
   name: propTypes.string,
   size: propTypes.oneOfType([propTypes.string, propTypes.number]),
   variant: propTypes.oneOf(['standard', 'filled', 'outlined']),
+  value: propTypes.string.isRequired,
+  onChange: propTypes.func.isRequired,
 };
 
 const Container = styled.div`

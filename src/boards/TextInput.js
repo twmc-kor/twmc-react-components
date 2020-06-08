@@ -8,6 +8,7 @@ const Hide = () => <Img src={require('../assets/hide.png')} alt="hide" />;
 
 function TextInputBoard() {
   const [state, setState] = useState({
+    text: '',
     password: '',
     showPassword: false,
   });
@@ -38,10 +39,28 @@ function TextInputBoard() {
         <H1> Variant Styled</H1>
         <Content>
           <Label variant="standard">Your ID:</Label>
-          <TextInput type="text" size="big" variant="standard" />
-          <TextInput type="text" size="big" variant="filled" />
+          <TextInput
+            type="text"
+            size="big"
+            variant="standard"
+            value={state.text}
+            onChange={handleChange('text')}
+          />
+          <TextInput
+            type="text"
+            size="big"
+            variant="filled"
+            value={state.text}
+            onChange={handleChange('text')}
+          />
           <Label variant="filled">Your ID:</Label>
-          <TextInput type="text" size="big" variant="outlined" />
+          <TextInput
+            type="text"
+            size="big"
+            variant="outlined"
+            value={state.text}
+            onChange={handleChange('text')}
+          />
           <Label variant="outlined">Your ID:</Label>
         </Content>
         <Content>
@@ -56,8 +75,7 @@ function TextInputBoard() {
           <Button
             variant="standard"
             size="big"
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}>
+            onClick={handleClickShowPassword}>
             {state.showPassword ? <Show /> : <Hide />}
           </Button>
           <TextInput
@@ -67,10 +85,7 @@ function TextInputBoard() {
             value={state.password}
             onChange={handleChange('password')}
           />
-          <Button
-            variant="filled"
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}>
+          <Button variant="filled" onClick={handleClickShowPassword}>
             {state.showPassword ? <Show /> : <Hide />}
           </Button>
           <Label variant="filled">Your PASSWORD:</Label>
@@ -81,10 +96,7 @@ function TextInputBoard() {
             value={state.password}
             onChange={handleChange('password')}
           />
-          <Button
-            variant="outlined"
-            onClick={handleClickShowPassword}
-            onMouseDown={handleMouseDownPassword}>
+          <Button variant="outlined" onClick={handleClickShowPassword}>
             {state.showPassword ? <Show /> : <Hide />}
           </Button>
           <Label variant="outlined">Your PASSWORD:</Label>
