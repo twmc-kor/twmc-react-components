@@ -62,6 +62,7 @@ function Sidebar() {
       <RouteButton to="/check-box">CheckBox</RouteButton>
       <RouteButton to="/toggle-switch">ToggleSwitch</RouteButton>
       <RouteButton to="/profile-image">ProfileImage</RouteButton>
+      <RouteButton to="/tooltip">Tooltip</RouteButton>
       <TwmcLink href="https://github.com/twmc-kor/twmc-react-components">
         <img
           src="/img/twmc_logo.png"
