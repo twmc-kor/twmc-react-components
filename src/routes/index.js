@@ -7,6 +7,7 @@ import {
   CheckBoxBoard,
   ToggleSwitchBoard,
   ProfileImageBoard,
+  SelectBoard,
 } from '../boards';
 import styled from 'styled-components';
 
@@ -29,6 +30,7 @@ const RootRouter = () => {
         <Route path="/check-box" component={CheckBoxBoard} />
         <Route path="/toggle-switch" component={ToggleSwitchBoard} />
         <Route path="/profile-image" component={ProfileImageBoard} />
+        <Route path="/select" component={SelectBoard} />
       </Switch>
     </Container>
   );
