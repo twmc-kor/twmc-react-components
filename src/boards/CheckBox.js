@@ -1,38 +1,26 @@
 import React, {useState} from 'react';
 import {CheckBox} from '../components';
 import styled from 'styled-components';
+// import Button from '../components/Button';
 
 export default function CheckBoxBoard() {
-  const initialStateA = {
+  const initialState = {
     a: false,
     b: false,
     c: false,
   };
-  const allCheckStateA = {
+  const checkAllState = {
     a: true,
     b: true,
     c: true,
   };
-  const initialStateB = {
-    d: false,
-    e: false,
-    f: false,
-  };
-  const allCheckStateB = {
-    d: true,
-    e: true,
-    f: true,
-  };
-  const [check, setCheck] = useState(initialStateA);
-  const [img, setImg] = useState(initialStateB);
-
+  const [check, setCheck] = useState(initialState);
   return (
     <Container>
-      <Section>Basic Style</Section>
-      <ControlButton>
-        <Button onClick={() => setCheck(initialStateA)}>RESET</Button>
-        <Button onClick={() => setCheck(allCheckStateA)}>CHECK ALL</Button>
-      </ControlButton>
+      <ButtonContainer>
+        <Button onClick={() => setCheck(initialState)}>RESET</Button>
+        <Button onClick={() => setCheck(checkAllState)}>CHECK ALL</Button>
+      </ButtonContainer>
       <CheckboxContainer>
         <CheckBox
           value={check.a}
@@ -42,12 +30,10 @@ export default function CheckBoxBoard() {
               a: value,
             })
           }
-          asset={<StyledImage src="/img/react.png"/>}
+          label={
+            <CheckStatus isChecked={check.a}>Basic style checkbox</CheckStatus>
+          }
         />
-
-        <CheckStatus>{check.a ? 'Hello' : 'GoodBye'}</CheckStatus>
-      </CheckboxContainer>
-      <CheckboxContainer>
         <CheckBox
           value={check.b}
           onClick={(value) =>
@@ -56,10 +42,27 @@ export default function CheckBoxBoard() {
               b: value,
             })
           }
+          asset={
+            <svg
+              style={{
+                fill: 'none',
+                stroke: 'blue',
+                strokeWidth: '5px',
+                width: '100%',
+                height: '100%',
+              }}
+              viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          }
+          activeBackgroundColor="lightblue"
+          inActiveBackgroundColor="#89e297"
+          activeBorderColor="yellow"
+          inActiveBorderColor="#e65c5c"
+          label={
+            <CheckStatus isChecked={check.b}>Custom style checkbox</CheckStatus>
+          }
         />
-        <CheckStatus>{check.b ? 'Check!' : 'UnCheck..'}</CheckStatus>
-      </CheckboxContainer>
-      <CheckboxContainer>
         <CheckBox
           value={check.c}
           onClick={(value) =>
@@ -68,84 +71,36 @@ export default function CheckBoxBoard() {
               c: value,
             })
           }
-        />
-        <CheckStatus>{check.c ? 'checking!' : ''}</CheckStatus>
-      </CheckboxContainer>
-      <Section style={{top: 230}}>Custom Style</Section>
-      <ControlButton style={{marginTop: 80}}>
-        <Button onClick={() => setImg(initialStateB)}>RESET</Button>
-        <Button onClick={() => setImg(allCheckStateB)}>CHECK ALL</Button>
-      </ControlButton>
-      <CheckboxContainer>
-        <CheckBox
-          value={img.d}
-          onClick={(value) =>
-            setImg({
-              ...img,
-              d: value,
-            })
+          asset={
+            <StyledImage alt="custom_checkbox_image" src="/img/react.png" />
+          }
+          label={
+            <CheckStatus isChecked={check.c}>Custom image checkbox</CheckStatus>
           }
         />
-        <CheckStatus>{img.d ? 'Hello' : 'GoodBye'}</CheckStatus>
-      </CheckboxContainer>
-      <CheckboxContainer>
-        <CheckBox
-          value={img.e}
-          onClick={(value) =>
-            setImg({
-              ...img,
-              e: value,
-            })
-          }
-        />
-        <CheckStatus>{img.e ? 'Check!' : 'UnCheck..'}</CheckStatus>
-      </CheckboxContainer>
-      <CheckboxContainer>
-        <CheckBox
-          value={img.f}
-          onClick={(value) =>
-            setImg({
-              ...img,
-              f: value,
-            })
-          }
-        />
-        <CheckStatus>{img.f ? 'checking!' : ''}</CheckStatus>
       </CheckboxContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 610px;
-  height: 450px;
+  justify-content: center;
+  flex: 1;
 `;
 
-const Section = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 260px;
-  margin-bottom: 15px;
-  font: 300 30px 'Bangers', cursive;
-  letter-spacing: 0.1em;
-  color: #112d4e;
-  cursor: default;
-`;
-const ControlButton = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 300px;
-  margin: 50px 0 10px;
+  margin-bottom: 20px;
 `;
 const Button = styled.button`
   padding: 5px 10px;
-  margin: 0 10px;
+  margin: 0 5px;
   font: 500 15px 'Helvetica Neue';
   color: #fff;
   border: 0;
@@ -155,24 +110,18 @@ const Button = styled.button`
   background-color: #f59f00;
 `;
 
-const CheckboxContainer = styled.label`
+const CheckboxContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 130px;
-  margin: 10px 0 0;
+  flex-direction: column;
 `;
 
 const CheckStatus = styled.div`
-  width: 100px;
-  height: 30px;
-  font: 500 22px 'Helvetica Neue';
+  padding-left: 5px;
+  font: 'Helvetica Neue';
+  text-decoration: ${({isChecked}) => (isChecked ? 'line-through' : 'none')};
 `;
 
 const StyledImage = styled.img`
-  position: absolute;
-  top: 2px;
-  left: 1px;
   width: 18px;
-  height: 16px;
+  height: 18px;
 `;
