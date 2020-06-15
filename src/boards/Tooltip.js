@@ -5,7 +5,9 @@ import styled from 'styled-components';
 export default function TooltipBoard() {
   return (
     <Container>
-      <Tooltip />
+      <Tooltip color>
+        이게 툴팁입니다. 알겠습니까? 만드는중이라고요 좀 기다려봐요
+      </Tooltip>
     </Container>
   );
 }
