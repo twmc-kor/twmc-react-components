@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import './index.css';
 
 function Overview() {
   return (
@@ -10,9 +11,13 @@ function Overview() {
         We are couple Front-end Developer.
       </OverviewMessage>
       <DevelopMember>
-        <ProfileContainer>
-          <ProfileImg src="/img/eunji.JPG" alt="LEEEUNJI profile img" />
-          <MemberName>Lee Eun Ji</MemberName>
+        <ProfileContainer className="profile">
+          <ProfileImg
+            src="/img/eunji.JPG"
+            alt="LEEEUNJI profile img"
+            className="profile_img"
+          />
+          <MemberName className="profile_name">Lee Eun Ji</MemberName>
         </ProfileContainer>
         <ContactLinkContainer>
           <ContactLink href="https://github.com/deveassy/twmc-react-components">
@@ -37,9 +42,13 @@ function Overview() {
         </ContactLinkContainer>
       </DevelopMember>
       <DevelopMember>
-        <ProfileContainer>
-          <ProfileImg src="/img/moon.JPG" alt="JANGMOONWON profile img" />
-          <MemberName>Jang Moon Won</MemberName>
+        <ProfileContainer className="profile">
+          <ProfileImg
+            src="/img/moon.JPG"
+            alt="JANGMOONWON profile img"
+            className="profile_img"
+          />
+          <MemberName className="profile_name">Jang Moon Won</MemberName>
         </ProfileContainer>
         <ContactLinkContainer>
           <ContactLink href="https://github.com/jangmoonwon/twmc-react-components">
@@ -95,7 +104,7 @@ const DevelopMember = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: -30px 10px 0;
+  margin: -15px 10px 0;
   padding: 10px 0;
 `;
 const ProfileContainer = styled.div`
@@ -103,23 +112,17 @@ const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: blue;
 `;
 const ProfileImg = styled.img`
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 20px;
-  width: 120px;
-  height: 120px;
+  bottom: 10px;
+  width: 165px;
+  height: 165px;
   border-radius: 50%;
-  transition: all 0s linear;
-  &:hover {
-    transform: scale(1.4);
-    transition: all 0s linear;
-    border: 5px solid #ff9a00;
-  }
+  transition: all 0.06s linear;
 `;
 const MemberName = styled.div`
   position: absolute;
@@ -130,9 +133,11 @@ const MemberName = styled.div`
   bottom: -15px;
   margin: 5px;
   padding: 5px 0;
-  background-color: #ff9a00;
+  border: 1px solid #000;
+  background-color: #fff;
   font: 800 25px 'Chelsea Market', cursive;
   text-shadow: 1px 1px 1px #000;
+  transition: all 0.1s linear;
 `;
 const ContactLinkContainer = styled.div`
   position: relative;
