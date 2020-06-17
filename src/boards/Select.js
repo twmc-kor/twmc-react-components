@@ -13,30 +13,45 @@ function SelectBoard() {
       [name]: e.target.value,
     });
   };
-  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('First Option: ' + state.firstOption);
+    alert('Second Option: ' + state.secondOption);
+  };
+
   return (
     <Container>
-        <p>First Option: {state.firstOption}</p>
-        <p>Second Option: {state.secondOption}</p>
-      <form>
-        <Select
-          value={state.firstOption}
-          onChange={handleChange}
-          name="firstOption">
-          <option value="">First Option</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </Select>
-        <Select
-          value={state.secondOption}
-          onChange={handleChange}
-          name="secondOption">
-          <option value="">Second Option</option>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-        </Select>
+      <form onSubmit={handleSubmit}>
+        <Section>
+          <Select
+            value={state.firstOption}
+            onChange={handleChange}
+            name="firstOption">
+            <option value="" selected>
+              First Option
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </Select>
+        </Section>
+        <Section>
+          <Select
+            value={state.secondOption}
+            onChange={handleChange}
+            name="secondOption">
+            <option value="" selected>
+              Second Option
+            </option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </Select>
+        </Section>
+        <Section>
+          <Button type="submit" value="선택하기" />
+        </Section>
       </form>
     </Container>
   );
@@ -51,7 +66,38 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Select = styled.select`
-width: 200px;
-height: 30px;
+background-color: transparent;
+  width: 250px;
+  height: 40px;
+  margin: 5px;
+  font-size: 17px;
+  text-align-last: center;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Hr = styled.hr`
+  width: 70vh;
+`;
+
+const Button = styled.input.attrs((props) => ({type: 'submit'}))`
+  width: 250px;
+  height: 40px;
+  margin: 5px;
+  font-size: 17px;
+  &:hover {
+    cursor: pointer;
+  }
 `;

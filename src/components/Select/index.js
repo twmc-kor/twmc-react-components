@@ -2,9 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Select(props) {
-  const [value, name, onChange, children] = props;
+  const [label, value, name, onChange, multiple, children] = props;
   return (
-    <Container value={value} name={name} onChange={onChange}>
+    <Container
+      label={label}
+      value={value}
+      name={name}
+      onChange={onChange}
+      multiple={multiple}>
       {children}
     </Container>
   );
