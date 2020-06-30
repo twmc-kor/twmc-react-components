@@ -58,36 +58,44 @@ function SelectBoard() {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    alert('알람이 설정되었습니다.');
+    alert(
+      state.firstOption +
+        state.secondOption +
+        ':' +
+        state.thirdOption +
+        '알람이 설정되었습니다.',
+    );
   };
   return (
     <Container>
       <Content>
-      <Select
-        value={state.firstOption}
-        onChange={handleChange}
-        name="firstOption">
-        {firstList}
-      </Select>
-      <Select
-        value={state.secondOption}
-        onChange={handleChange}
-        name="secondOption">
-        {secondList}
-      </Select>
-      <Select
-        value={state.thirdOption}
-        onChange={handleChange}
-        name="thirdOption">
-        {thirdList}
-      </Select>
+        <Header>Settings Alram</Header>
+        <AlramImg src={require('../assets/alram.png')} alt="alram" />
       </Content>
       <Content>
-      <p>
-        {state.firstOption} {state.secondOption}: {state.thirdOption}
-      </p>
-      <button onClick={handleClick}>설정하기</button>
+        <Select
+          value={state.firstOption}
+          onChange={handleChange}
+          name="firstOption">
+          {firstList}
+        </Select>
+        <Select
+          value={state.secondOption}
+          onChange={handleChange}
+          name="secondOption">
+          {secondList}
+        </Select>
+        <Select
+          value={state.thirdOption}
+          onChange={handleChange}
+          name="thirdOption">
+          {thirdList}
+        </Select>
       </Content>
+      <SetTimes>
+        {state.firstOption} {state.secondOption}: {state.thirdOption}
+      </SetTimes>
+      <Button onClick={handleClick}>OK</Button>
     </Container>
   );
 }
@@ -106,4 +114,40 @@ const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 10px;
+`;
+
+const Header = styled.h1`
+  font-size: 40px;
+  font-weight: 600;
+`;
+
+const AlramImg = styled.img`
+  width: 40px;
+`;
+
+const Button = styled.button`
+  width: 100px;
+  margin: 25px;
+  padding: 5px;
+  background-color: #ffa931;
+  border: 0;
+  border-radius: 4px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    background-color: #fecb89;
+  }
+  font-size: 30px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const SetTimes = styled.div`
+  text-align: center;
+  width: 250px;
+  font-size: 35px;
+  font-weight: 600;
+  border: 0;
 `;
