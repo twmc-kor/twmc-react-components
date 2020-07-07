@@ -7,14 +7,14 @@ export default function TooltipBoard() {
     <TooltipContainer>
       <TooltipMode>Bright Mode</TooltipMode>
       <BrightMode>
-        <Tooltip color mode="bright" label="Hover me!">
-          This is bright mode.
+        <Tooltip direction="right" label="This is bright mode.">
+          Hover me!
         </Tooltip>
       </BrightMode>
       <TooltipMode style={{top: 290}}>Dark Mode</TooltipMode>
       <DarkMode>
-        <Tooltip mode="dark" label="Hover me again!">
-          This is dark mode.
+        <Tooltip mode="dark" direction="bottom" label="This is dark mode.">
+          Hover me again!
         </Tooltip>
       </DarkMode>
     </TooltipContainer>
