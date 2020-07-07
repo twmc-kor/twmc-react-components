@@ -37,10 +37,10 @@ const StyledSpinner = styled.div`
   height: ${({size}) => size};
   background-color: ${({type}) => {
     if (type === 'typeA') return 'transparent';
-    return '#333';
+    return '#ff9a76';
   }};
   border: ${({type}) => {
-    if (type === 'typeA') return '4.5px solid #333';
+    if (type === 'typeA') return '4.5px solid #ff9a76';
     return '0';
   }};
   border-top-color: rgba(209, 205, 205, 0.6);
@@ -50,17 +50,17 @@ const StyledSpinner = styled.div`
     if (type === 'typeA' || type === 'typeB') return '50%';
     return 0;
   }};
-   ${props =>
+  ${(props) =>
     props.type === 'typeA' &&
     css`
       animation: ${EffectA} 2000ms infinite;
     `};
-    ${props =>
+  ${(props) =>
     props.type === 'typeB' &&
     css`
       animation: ${EffectB} 1s infinite ease-in-out;
     `};
-    ${props =>
+  ${(props) =>
     props.type === 'typeC' &&
     css`
       animation: ${EffectC} 1.5s infinite ease-in-out;
