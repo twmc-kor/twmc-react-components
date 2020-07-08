@@ -7,9 +7,7 @@ export default function TooltipBoard() {
     <TooltipContainer>
       <TooltipMode>Bright Mode</TooltipMode>
       <BrightMode>
-        <Tooltip direction="right" label="This is bright mode.">
-          Hover me!
-        </Tooltip>
+        <Tooltip label="This is bright mode.">Hover me!</Tooltip>
       </BrightMode>
       <TooltipMode style={{top: 290}}>Dark Mode</TooltipMode>
       <DarkMode>
@@ -47,7 +45,7 @@ const BrightMode = styled.div`
   width: 450px;
   height: 150px;
   margin: 50px 0 0;
-  background-color: yellowgreen;
+  background-color: #fecb89;
 `;
 const DarkMode = styled.div`
   display: flex;

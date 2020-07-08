@@ -58,13 +58,11 @@ const TooltipText = styled.span`
   padding: 5px 10px;
   margin-left: -60px;
   background-color: ${(props) => {
-    // if (props.mode === 'bright') return '#666';
     if (props.mode === 'dark') return '#f5f5f5';
     return props.color;
   }};
   font: 500 15px 'sans-serif';
   color: ${(props) => {
-    // if (props.mode === 'bright') return '#f5f5f5';
     if (props.mode === 'dark') return '#333';
     return '#fff';
   }};
@@ -94,17 +92,10 @@ const TooltipText = styled.span`
     left: 50%; */
     margin-left: -5px;
     border: ${(props) => {
-      // if (props.mode === 'bright') return '5px solid #666';
       if (props.mode === 'dark') return '5px solid #f5f5f5';
       return '5px solid #666';
     }};
     border-color: ${(props) => {
-      // if (props.mode === 'bright')
-      //   return '#666 transparent transparent transparent';
-      // if (props.mode === 'dark')
-      //   return '#f5f5f5 transparent transparent transparent';
-      // return '#666 transparent transparent transparent';
-
       // 어두운 모드
       if (props.mode === 'dark' && !props.direction)
         return '#f5f5f5 transparent transparent transparent';
