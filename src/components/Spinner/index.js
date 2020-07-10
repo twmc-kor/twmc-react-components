@@ -66,16 +66,6 @@ const StyledSpinner = styled.div`
     `};
 `;
 
-const TypeASpiner = styled.div`
-  ${CommonStyleCss}
-  background-color: transparent;
-  ${(props) =>
-    props.type === 'typeA' &&
-    css`
-      animation: ${EffectA} 2000ms infinite;
-    `};
-`;
-
 export default function Spinner(props) {
   const {size, type} = props;
 
