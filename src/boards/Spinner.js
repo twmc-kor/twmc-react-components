@@ -2,26 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import Spinner from '../components/Spinner';
 
-
-
 function SpinnerBoard() {
   return (
     <Container>
-        <h1>TypeA </h1>
+      <h1>TypeA </h1>
       <Content>
-      <Spinner size="small" type="typeA" huge/>
+        <Spinner size="small" type="typeA" />
         <Spinner size="normal" type="typeA" />
         <Spinner size="big" type="typeA" />
       </Content>
       <h1>TypeB </h1>
       <Content>
-      <Spinner size="small" type="typeB" />
+        <Spinner size="small" type="typeB" />
         <Spinner size="normal" type="typeB" />
         <Spinner size="big" type="typeB" />
       </Content>
       <h1>TypeC </h1>
       <Content>
-      <Spinner size="small" type="typeC" />
+        <Spinner size="small" type="typeC" />
         <Spinner size="normal" type="typeC" />
         <Spinner size="big" type="typeC" />
       </Content>

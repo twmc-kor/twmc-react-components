@@ -32,38 +32,47 @@ const EffectC = keyframes`
 }
 `;
 
-const StyledSpinner = styled.div`
+const CommonStyleCss = css`
   width: ${({size}) => size};
   height: ${({size}) => size};
-  background-color: ${({type}) => {
-    if (type === 'typeA') return 'transparent';
-    return '#ff9a76';
-  }};
-  border: ${({type}) => {
-    if (type === 'typeA') return '4.5px solid #ff9a76';
-    return '0';
-  }};
-  border-top-color: rgba(209, 205, 205, 0.6);
-  border-bottom-color: rgba(209, 205, 205, 0.6);
-  border-right-color: rgba(209, 205, 205, 0.6);
-  border-radius: ${({type}) => {
-    if (type === 'typeA' || type === 'typeB') return '50%';
-    return 0;
-  }};
+`;
+
+const StyledSpinner = styled.div`
+  ${CommonStyleCss}
   ${(props) =>
     props.type === 'typeA' &&
     css`
+      background-color: transparent;
+      border: 4.5px solid #ff9a76;
+      border-radius: 50%;
+      border-top-color: rgba(209, 205, 205, 0.6);
+      border-bottom-color: rgba(209, 205, 205, 0.6);
+      border-right-color: rgba(209, 205, 205, 0.6);
       animation: ${EffectA} 2000ms infinite;
     `};
   ${(props) =>
     props.type === 'typeB' &&
     css`
+      background-color: #ff9a76;
+      border-radius: 50%;
       animation: ${EffectB} 1s infinite ease-in-out;
     `};
   ${(props) =>
     props.type === 'typeC' &&
     css`
+      background-color: #ff9a76;
+      border-radius: 0;
       animation: ${EffectC} 1.5s infinite ease-in-out;
+    `};
+`;
+
+const TypeASpiner = styled.div`
+  ${CommonStyleCss}
+  background-color: transparent;
+  ${(props) =>
+    props.type === 'typeA' &&
+    css`
+      animation: ${EffectA} 2000ms infinite;
     `};
 `;
 
@@ -91,4 +100,9 @@ const Container = styled.div`
 Spinner.propTypes = {
   size: propTypes.oneOfType([propTypes.string, propTypes.number]),
   type: propTypes.oneOf(['typeA', 'typeB', 'typeC']),
+};
+
+Spinner.defaultProps = {
+  size: '30px',
+  type: 'typeA',
 };
