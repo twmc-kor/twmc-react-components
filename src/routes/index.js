@@ -7,6 +7,7 @@ import {
   CheckBoxBoard,
   ToggleSwitchBoard,
   ProfileImageBoard,
+  TooltipBoard,
   SpinnerBoard,
   SelectBoard,
 } from '../boards';
@@ -31,6 +32,7 @@ const RootRouter = () => {
         <Route path="/check-box" component={CheckBoxBoard} />
         <Route path="/toggle-switch" component={ToggleSwitchBoard} />
         <Route path="/profile-image" component={ProfileImageBoard} />
+        <Route path="/tooltip" component={TooltipBoard} />
         <Route path="/spinner" component={SpinnerBoard} />
         <Route path="/select" component={SelectBoard} />
       </Switch>
