@@ -38,7 +38,7 @@ const Container = styled.div`
 
 ProfileImage.propTypes = {
   src: propTypes.string.isRequired,
-  alt: propTypes.string.isRequired,
+  alt: propTypes.string.isRequired, 
   size: propTypes.oneOfType([propTypes.string, propTypes.number]),
   variant: propTypes.oneOf(['circle', 'rounded']),
 };
