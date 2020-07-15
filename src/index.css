@@ -11,6 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@import url(https://fonts.googleapis.com/css2?family=Bangers&display=swap);
+@font-face {
+  font-family: 'Bangers', cursive;
+  src: url(https://fonts.googleapis.com/css2?family=Bangers&display=swap);
+}
 @import url(https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap);
 @font-face {
   font-family: 'Chelsea Market', cursive;

@@ -8,6 +8,8 @@ import {
   ToggleSwitchBoard,
   ProfileImageBoard,
   TooltipBoard,
+  SpinnerBoard,
+  SelectBoard,
 } from '../boards';
 import styled from 'styled-components';
 
@@ -31,6 +33,8 @@ const RootRouter = () => {
         <Route path="/toggle-switch" component={ToggleSwitchBoard} />
         <Route path="/profile-image" component={ProfileImageBoard} />
         <Route path="/tooltip" component={TooltipBoard} />
+        <Route path="/spinner" component={SpinnerBoard} />
+        <Route path="/select" component={SelectBoard} />
       </Switch>
     </Container>
   );

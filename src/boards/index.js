@@ -4,4 +4,16 @@ import ToggleSwitchBoard from './ToggleSwitch';
 import CheckBoxBoard from './CheckBox';
 import ProfileImageBoard from './ProfileImage';
 import TooltipBoard from './Tooltip';
-export {ButtonBoard, TextInputBoard, CheckBoxBoard, ToggleSwitchBoard, ProfileImageBoard, TooltipBoard};
+import SpinnerBoard from './Spinner';
+import SelectBoard from './Select';
+
+export {
+  ButtonBoard,
+  TextInputBoard,
+  CheckBoxBoard,
+  ToggleSwitchBoard,
+  ProfileImageBoard,
+  SpinnerBoard,
+  SelectBoard,
+  TooltipBoard,
+};
