@@ -2,12 +2,22 @@ import React from 'react';
 import Tooltip from '../components/Tooltip';
 import styled from 'styled-components';
 
+const TestInnerComponent = () => {
+  return (
+    <div style={{width: 150, height: 30, backgroundColor: 'red'}}>
+      Hover me!
+    </div>
+  );
+};
+
 export default function TooltipBoard() {
   return (
     <TooltipContainer>
       <TooltipMode>Bright Mode</TooltipMode>
       <BrightMode>
-        <Tooltip label="This is bright mode.">Hover me!</Tooltip>
+        <Tooltip label="This is bright mode.">
+          <TestInnerComponent />
+        </Tooltip>
       </BrightMode>
       <TooltipMode style={{top: 290}}>Dark Mode</TooltipMode>
       <DarkMode>
