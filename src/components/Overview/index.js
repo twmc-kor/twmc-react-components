@@ -1,34 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
+import './index.css';
 
 function Overview() {
   return (
     <Container>
-      <Hello>
+      <OverviewMessage style={{top: 0}}>
         Hello, World!
         <br />
-        We are Front-end Developer.
-      </Hello>
+        We are couple Front-end Developer.
+      </OverviewMessage>
       <DevelopMember>
-        <ProfileImg src="/img/eunji.JPG" alt="LEEEUNJI profile img"/>
-        <Profile>
-          <MemberName>Lee Eun Ji</MemberName>
-          <ContactLink href="https://github.com/deveassy/twmc-react-components"><img src="/img/github.png" alt="github" style={{width:21, height:21, marginRight:4}} /> GITHUB</ContactLink>
-          <ContactLink href="https://velog.io/@eassy"><img src="/img/velog.jpg" alt="velog" style={{width:19, height:19, marginRight:5}} />VELOG</ContactLink>
-          <ContactLink style={{fontSize:20}}>dev.eass7@gmail.com</ContactLink>
-        </Profile>
+        <ProfileContainer className="profile">
+          <ProfileImg
+            src="/img/eunji.JPG"
+            alt="LEEEUNJI profile img"
+            className="profile_img"
+          />
+          <MemberName className="profile_name">Lee Eun Ji</MemberName>
+        </ProfileContainer>
+        <ContactLinkContainer>
+          <ContactLink href="https://github.com/deveassy/twmc-react-components">
+            <img
+              src="/img/github.png"
+              alt="github"
+              style={{width: 21, height: 21, marginRight: 4}}
+            />{' '}
+            GITHUB
+          </ContactLink>
+          <ContactLink href="https://velog.io/@eassy">
+            <img
+              src="/img/velog.jpg"
+              alt="velog"
+              style={{width: 19, height: 19, marginRight: 5}}
+            />
+            VELOG
+          </ContactLink>
+          <ContactLink style={{fontSize: 20, cursor: 'default'}}>
+            dev.eass7@gmail.com
+          </ContactLink>
+        </ContactLinkContainer>
       </DevelopMember>
       <DevelopMember>
-        <ProfileImg src="/img/moon.JPG" alt="JANGMOONWON profile img"/>
-        <Profile>
-          <MemberName>Jang Moon Won</MemberName>
-          <ContactLink href="https://github.com/jangmoonwon/twmc-react-components"><img src="/img/github.png" alt="github" style={{width:21, height:21, marginRight:4}} /> GITHUB</ContactLink>
-          <ContactLink href="https://velog.io/@jangmoonwon"><img src="/img/velog.jpg" alt="velog" style={{width:19, height:19, marginRight:5}} />VELOG</ContactLink>
-          <ContactLink style={{fontSize:20}}>muneon96@gmail.com</ContactLink>
-        </Profile>
+        <ProfileContainer className="profile">
+          <ProfileImg
+            src="/img/moon.JPG"
+            alt="JANGMOONWON profile img"
+            className="profile_img"
+          />
+          <MemberName className="profile_name">Jang Moon Won</MemberName>
+        </ProfileContainer>
+        <ContactLinkContainer>
+          <ContactLink href="https://github.com/jangmoonwon/twmc-react-components">
+            <img
+              src="/img/github.png"
+              alt="github"
+              style={{width: 21, height: 21, marginRight: 4}}
+            />{' '}
+            GITHUB
+          </ContactLink>
+          <ContactLink href="https://velog.io/@jangmoonwon">
+            <img
+              src="/img/velog.jpg"
+              alt="velog"
+              style={{width: 19, height: 19, marginRight: 5}}
+            />
+            VELOG
+          </ContactLink>
+          <ContactLink style={{fontSize: 20, cursor: 'default'}}>
+            muneon96@gmail.com
+          </ContactLink>
+        </ContactLinkContainer>
       </DevelopMember>
       <OverviewMessage>
-        This Project is to modularzing our 
+        This Project is to modularzing our
         <br />
         <strong>own components</strong> that can be used externally.
         <br />
@@ -46,30 +91,62 @@ const Container = styled.div`
   width: 650px;
   height: 500px;
 `;
-const Hello = styled.div`
+const OverviewMessage = styled.div`
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 20px;
-  font: 500 27px 'Chelsea Market', cursive;
+  margin-top: 15px;
+  font: 300 25px 'Chelsea Market', cursive;
+  cursor: default;
 `;
 const DevelopMember = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: -30px 10px 0;
+  margin: -15px 10px 0;
   padding: 10px 0;
 `;
-const ProfileImg = styled.img`
-  width: 120px;
-  height: 120px;
-  border: 1px solid #000;
-  border-radius: 50%;
+const ProfileContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-const MemberName = styled.p`
+const ProfileImg = styled.img`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 10px;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+  transition: all 0.06s linear;
+`;
+const MemberName = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  bottom: -15px;
   margin: 5px;
+  padding: 5px 0;
+  border: 1px solid #000;
+  background-color: #fff;
   font: 800 25px 'Chelsea Market', cursive;
   text-shadow: 1px 1px 1px #000;
+  transition: all 0.1s linear;
+`;
+const ContactLinkContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  margin: 10px 0 -160px;
+  font-size: 25px;
 `;
 const ContactLink = styled.a`
   display: flex;
@@ -82,22 +159,6 @@ const ContactLink = styled.a`
   &:hover {
     color: #e23e57;
   }
-`;
-const Profile = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  width: 250px;
-  font-size: 25px;
-`;
-const OverviewMessage = styled.div`
-  position: absolute;
-  top: 370px;
-  left: 20px;
-  margin-top: 15px;
-  font: 300 25px 'Chelsea Market', cursive;
 `;
 
 export default Overview;

@@ -1,0 +1,12 @@
+.profile:hover .profile_name {
+  transform: translateY(-35px);
+  transition: all 0.1s linear;
+  border: none;
+  color: #fff;
+  background-color: #ff9a00;
+}
+.profile:hover .profile_img {
+  transform: translateY(-13px);
+  transition: all 0.06s linear;
+  border: 5px solid #ff9a00;
+}
